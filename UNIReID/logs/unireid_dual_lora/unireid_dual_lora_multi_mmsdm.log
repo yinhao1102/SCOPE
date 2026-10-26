@@ -1,0 +1,519 @@
+./logs/ORBench/20260306_161011_baseline is not exists, create given directory
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Using 1 GPUs
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Namespace(local_rank=0
+ name='baseline'
+ log_dir='logs'
+ output_dir='./logs/ORBench/20260306_161011_baseline'
+ log_period=100
+ eval_period=1
+ val_dataset='test'
+ resume=False
+ resume_ckpt_file=''
+ pretrain_choice='ViT-B/16'
+ temperature=0.07
+ img_aug=False
+ nlp_aug=False
+ add_lora=True
+ freeze_vision_encoder=False
+ lora_r=4
+ scaling=1.0
+ num_loras=4
+ lora_layers=12
+ lora_mode='all'
+ mmt_depth=1
+ num_colors=60
+ cmt_depth=4
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ lr_factor=5.0
+ use_imageid=False
+ MCQ=False
+ MCM=False
+ MLM=False
+ MSM=False
+ MCQMLM=False
+ MSMMLM=False
+ loss_names='mm_sdm'
+ cmm_loss_weight=1.0
+ mcm_loss_weight=1.0
+ mlm_loss_weight=1.0
+ mcq_loss_weight=1.0
+ id_loss_weight=1.0
+ img_size=(384
+ 128)
+ stride_size=16
+ text_length=77
+ vocab_size=49408
+ learnable_loss_weight=False
+ label_mix=False
+ optimizer='Adam'
+ lr=1e-05
+ bias_lr_factor=2.0
+ momentum=0.9
+ weight_decay=4e-05
+ weight_decay_bias=0.0
+ alpha=0.9
+ beta=0.999
+ num_epoch=60
+ milestones=(20
+ 50)
+ gamma=0.1
+ warmup_factor=0.1
+ warmup_epochs=5
+ warmup_method='linear'
+ lrscheduler='step'
+ target_lr=1e-08
+ power=0.9
+ dataset_name='ORBench'
+ sampler='random'
+ num_instance=4
+ root_dir='/home/yinhao/data'
+ batch_size=64
+ test_batch_size=512
+ num_workers=8
+ training=True
+ test_setting=0
+ fusion_way='add'
+ only_sketch=False
+ only_text=False
+ pa=0.1
+ only_fusion_loss=False
+ four_fusion_loss=False
+ focal_three_fusion_loss=False
+ focal_three_fusion_loss2=False
+ focal_three_fusion_loss3=False
+ focal_three_fusion_loss4=False
+ focal_three_fusion_loss5=False
+ focal_three_fusion_loss6=False
+ focalthree_fusion_loss=False
+ focalthree_four_fusion_loss=False
+ al=1.0
+ ga=2.0
+ klp=1.0
+ distributed=False)
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Training only sketch False
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Using only text False
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Using only fusion False
+2026-03-06 16:10:11,413 UNIReid_lora INFO: Using add fusion method
+Random Sampling Processing...
+Random Sampling Completed!
+Training Model with ['mm_sdm'] tasks
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+Dual LoRA Mode:all
+Pretrained Multimodal Encoder with LoRAs Loaded, with LoRA_r=4, LoRA_layers=12
+Using 5.0 times learning rate for random init module 
+Epoch[1] Iteration[100/423] Loss: 111.4458, cone_mmsdm_loss: 27.9001, ctwo_mmsdm_loss: 27.8532, cthree_mmsdm_loss: 27.8476, cfour_mmsdm_loss: 27.8449, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[200/423] Loss: 111.2676, cone_mmsdm_loss: 27.8621, ctwo_mmsdm_loss: 27.8089, cthree_mmsdm_loss: 27.8004, cfour_mmsdm_loss: 27.7962, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[300/423] Loss: 111.1421, cone_mmsdm_loss: 27.8374, ctwo_mmsdm_loss: 27.7778, cthree_mmsdm_loss: 27.7664, cfour_mmsdm_loss: 27.7605, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[400/423] Loss: 111.0239, cone_mmsdm_loss: 27.8107, ctwo_mmsdm_loss: 27.7496, cthree_mmsdm_loss: 27.7355, cfour_mmsdm_loss: 27.7282, Acc: 0.000, Base Lr: 1.00e-06
+One Modality Evaluating...
+NIR: R1=3.376, R5=9.918, R10=15.060, mAP=1.569, mINP=0.476
+CP: R1=13.597, R5=27.458, R10=35.069, mAP=4.517, mINP=0.502
+SK: R1=5.819, R5=14.319, R10=20.472, mAP=2.431, mINP=0.461
+TEXT: R1=14.055, R5=30.537, R10=41.474, mAP=6.770, mINP=1.005
+
+Two Modalities Evaluating...
+NIR+CP: R1=2.715, R5=7.827, R10=12.019, mAP=1.861, mINP=0.694
+CP+NIR: R1=1.958, R5=6.861, R10=10.444, mAP=1.720, mINP=0.638
+NIR+SK: R1=2.043, R5=7.779, R10=12.153, mAP=1.812, mINP=0.687
+SK+NIR: R1=1.583, R5=6.736, R10=10.278, mAP=1.680, mINP=0.632
+NIR+TEXT: R1=1.928, R5=6.705, R10=10.926, mAP=1.752, mINP=0.712
+TEXT+NIR: R1=2.083, R5=7.507, R10=12.676, mAP=2.176, mINP=0.880
+CP+SK: R1=2.083, R5=6.250, R10=9.639, mAP=1.681, mINP=0.605
+SK+CP: R1=2.042, R5=6.319, R10=10.083, mAP=1.678, mINP=0.602
+CP+TEXT: R1=1.708, R5=5.917, R10=9.681, mAP=1.624, mINP=0.608
+TEXT+CP: R1=2.676, R5=9.662, R10=15.008, mAP=2.292, mINP=0.859
+SK+TEXT: R1=1.750, R5=5.528, R10=10.167, mAP=1.670, mINP=0.627
+TEXT+SK: R1=2.399, R5=8.842, R10=14.864, mAP=2.307, mINP=0.876
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=2.465, R5=8.345, R10=12.624, mAP=1.923, mINP=0.715
+CP+NIR+SK: R1=2.097, R5=7.458, R10=10.972, mAP=1.785, mINP=0.651
+SK+NIR+CP: R1=1.917, R5=7.208, R10=11.125, mAP=1.804, mINP=0.650
+NIR+CP+TEXT: R1=2.571, R5=8.115, R10=13.084, mAP=1.936, mINP=0.752
+CP+NIR+TEXT: R1=2.361, R5=6.889, R10=11.167, mAP=1.849, mINP=0.685
+TEXT+NIR+CP: R1=2.986, R5=9.972, R10=16.543, mAP=2.450, mINP=0.926
+NIR+SK+TEXT: R1=2.398, R5=7.875, R10=12.691, mAP=1.905, mINP=0.758
+SK+NIR+TEXT: R1=1.806, R5=6.264, R10=10.611, mAP=1.814, mINP=0.689
+TEXT+NIR+SK: R1=2.454, R5=9.280, R10=15.695, mAP=2.413, mINP=0.939
+CP+SK+TEXT: R1=1.917, R5=6.556, R10=10.778, mAP=1.739, mINP=0.641
+SK+CP+TEXT: R1=2.000, R5=6.681, R10=10.819, mAP=1.759, mINP=0.643
+TEXT+CP+SK: R1=2.953, R5=10.299, R10=16.460, mAP=2.473, mINP=0.897
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=2.657, R5=8.815, R10=13.784, mAP=1.970, mINP=0.758
+CP+NIR+SK+TEXT: R1=2.028, R5=7.333, R10=11.583, mAP=1.859, mINP=0.684
+SK+NIR+CP+TEXT: R1=2.222, R5=7.292, R10=11.611, mAP=1.875, mINP=0.687
+TEXT+NIR+CP+SK: R1=2.825, R5=10.310, R10=16.947, mAP=2.505, mINP=0.937
++----------------+--------+--------+--------+-------+-------+
+|      task      |   R1   |   R5   |  R10   |  mAP  |  mINP |
++----------------+--------+--------+--------+-------+-------+
+|      NIR       | 3.376  | 9.918  | 15.060 | 1.569 | 0.476 |
+|       CP       | 13.597 | 27.458 | 35.069 | 4.517 | 0.502 |
+|       SK       | 5.819  | 14.319 | 20.472 | 2.431 | 0.461 |
+|      TEXT      | 14.055 | 30.537 | 41.474 | 6.770 | 1.005 |
+|     NIR+CP     | 2.715  | 7.827  | 12.019 | 1.861 | 0.694 |
+|     CP+NIR     | 1.958  | 6.861  | 10.444 | 1.720 | 0.638 |
+|     NIR+SK     | 2.043  | 7.779  | 12.153 | 1.812 | 0.687 |
+|     SK+NIR     | 1.583  | 6.736  | 10.278 | 1.680 | 0.632 |
+|    NIR+TEXT    | 1.928  | 6.705  | 10.926 | 1.752 | 0.712 |
+|    TEXT+NIR    | 2.083  | 7.507  | 12.676 | 2.176 | 0.880 |
+|     CP+SK      | 2.083  | 6.250  | 9.639  | 1.681 | 0.605 |
+|     SK+CP      | 2.042  | 6.319  | 10.083 | 1.678 | 0.602 |
+|    CP+TEXT     | 1.708  | 5.917  | 9.681  | 1.624 | 0.608 |
+|    TEXT+CP     | 2.676  | 9.662  | 15.008 | 2.292 | 0.859 |
+|    SK+TEXT     | 1.750  | 5.528  | 10.167 | 1.670 | 0.627 |
+|    TEXT+SK     | 2.399  | 8.842  | 14.864 | 2.307 | 0.876 |
+|   NIR+CP+SK    | 2.465  | 8.345  | 12.624 | 1.923 | 0.715 |
+|   CP+NIR+SK    | 2.097  | 7.458  | 10.972 | 1.785 | 0.651 |
+|   SK+NIR+CP    | 1.917  | 7.208  | 11.125 | 1.804 | 0.650 |
+|  NIR+CP+TEXT   | 2.571  | 8.115  | 13.084 | 1.936 | 0.752 |
+|  CP+NIR+TEXT   | 2.361  | 6.889  | 11.167 | 1.849 | 0.685 |
+|  TEXT+NIR+CP   | 2.986  | 9.972  | 16.543 | 2.450 | 0.926 |
+|  NIR+SK+TEXT   | 2.398  | 7.875  | 12.691 | 1.905 | 0.758 |
+|  SK+NIR+TEXT   | 1.806  | 6.264  | 10.611 | 1.814 | 0.689 |
+|  TEXT+NIR+SK   | 2.454  | 9.280  | 15.695 | 2.413 | 0.939 |
+|   CP+SK+TEXT   | 1.917  | 6.556  | 10.778 | 1.739 | 0.641 |
+|   SK+CP+TEXT   | 2.000  | 6.681  | 10.819 | 1.759 | 0.643 |
+|   TEXT+CP+SK   | 2.953  | 10.299 | 16.460 | 2.473 | 0.897 |
+| NIR+CP+SK+TEXT | 2.657  | 8.815  | 13.784 | 1.970 | 0.758 |
+| CP+NIR+SK+TEXT | 2.028  | 7.333  | 11.583 | 1.859 | 0.684 |
+| SK+NIR+CP+TEXT | 2.222  | 7.292  | 11.611 | 1.875 | 0.687 |
+| TEXT+NIR+CP+SK | 2.825  | 10.310 | 16.947 | 2.505 | 0.937 |
+|    ONE_AVER    | 9.212  | 20.558 | 28.019 | 3.822 | 0.611 |
+|    TWO_AVER    | 2.081  | 7.161  | 11.495 | 1.855 | 0.702 |
+|   THREE_AVER   | 2.327  | 7.912  | 12.714 | 1.988 | 0.745 |
+|   FOUR_AVER    | 2.433  | 8.438  | 13.481 | 2.052 | 0.767 |
++----------------+--------+--------+--------+-------+-------+
+Epoch[2] Iteration[100/423] Loss: 109.6691, cone_mmsdm_loss: 27.5005, ctwo_mmsdm_loss: 27.4430, cthree_mmsdm_loss: 27.3807, cfour_mmsdm_loss: 27.3448, Acc: 0.000, Base Lr: 2.80e-06
+Epoch[2] Iteration[200/423] Loss: 104.2249, cone_mmsdm_loss: 26.3049, ctwo_mmsdm_loss: 26.2434, cthree_mmsdm_loss: 25.9277, cfour_mmsdm_loss: 25.7489, Acc: 0.000, Base Lr: 2.80e-06
+Epoch[2] Iteration[300/423] Loss: 95.0480, cone_mmsdm_loss: 24.6366, ctwo_mmsdm_loss: 24.0682, cthree_mmsdm_loss: 23.3565, cfour_mmsdm_loss: 22.9868, Acc: 0.000, Base Lr: 2.80e-06
+Epoch[2] Iteration[400/423] Loss: 87.7746, cone_mmsdm_loss: 23.5223, ctwo_mmsdm_loss: 22.2475, cthree_mmsdm_loss: 21.2498, cfour_mmsdm_loss: 20.7550, Acc: 0.000, Base Lr: 2.80e-06
+One Modality Evaluating...
+NIR: R1=16.441, R5=27.185, R10=32.710, mAP=13.047, mINP=3.524
+CP: R1=64.833, R5=77.389, R10=82.917, mAP=44.907, mINP=10.512
+SK: R1=38.222, R5=54.861, R10=62.569, mAP=26.284, mINP=5.161
+TEXT: R1=26.565, R5=43.152, R10=51.163, mAP=21.214, mINP=4.628
+
+Two Modalities Evaluating...
+NIR+CP: R1=55.741, R5=74.158, R10=80.739, mAP=40.355, mINP=8.716
+CP+NIR: R1=52.292, R5=70.458, R10=77.694, mAP=37.079, mINP=8.606
+NIR+SK: R1=36.412, R5=54.782, R10=62.974, mAP=27.507, mINP=5.772
+SK+NIR: R1=33.542, R5=52.069, R10=60.694, mAP=24.967, mINP=5.575
+NIR+TEXT: R1=33.612, R5=52.998, R10=61.736, mAP=25.528, mINP=5.408
+TEXT+NIR: R1=39.961, R5=59.158, R10=66.903, mAP=30.358, mINP=6.269
+CP+SK: R1=46.056, R5=65.972, R10=73.944, mAP=34.188, mINP=7.638
+SK+CP: R1=47.861, R5=66.611, R10=74.208, mAP=34.432, mINP=7.605
+CP+TEXT: R1=48.292, R5=66.722, R10=74.319, mAP=35.023, mINP=7.871
+TEXT+CP: R1=61.330, R5=78.033, R10=83.507, mAP=45.597, mINP=9.220
+SK+TEXT: R1=39.569, R5=59.722, R10=67.833, mAP=29.433, mINP=6.643
+TEXT+SK: R1=51.064, R5=71.413, R10=78.526, mAP=38.866, mINP=7.794
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=55.089, R5=74.724, R10=81.707, mAP=40.642, mINP=8.632
+CP+NIR+SK: R1=51.153, R5=71.236, R10=79.194, mAP=37.158, mINP=8.302
+SK+NIR+CP: R1=50.986, R5=70.417, R10=78.292, mAP=36.925, mINP=8.253
+NIR+CP+TEXT: R1=59.127, R5=76.470, R10=83.146, mAP=42.959, mINP=9.123
+CP+NIR+TEXT: R1=54.375, R5=73.375, R10=80.250, mAP=39.674, mINP=9.173
+TEXT+NIR+CP: R1=66.454, R5=82.670, R10=88.238, mAP=49.326, mINP=10.119
+NIR+SK+TEXT: R1=50.293, R5=70.667, R10=78.360, mAP=37.007, mINP=7.672
+SK+NIR+TEXT: R1=47.625, R5=67.014, R10=75.569, mAP=34.075, mINP=7.517
+TEXT+NIR+SK: R1=57.418, R5=76.593, R10=83.546, mAP=42.829, mINP=8.608
+CP+SK+TEXT: R1=51.347, R5=69.611, R10=77.361, mAP=36.881, mINP=8.208
+SK+CP+TEXT: R1=50.792, R5=69.250, R10=77.083, mAP=36.910, mINP=8.308
+TEXT+CP+SK: R1=63.778, R5=80.593, R10=86.366, mAP=47.521, mINP=9.589
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=60.240, R5=78.139, R10=83.866, mAP=43.820, mINP=9.278
+CP+NIR+SK+TEXT: R1=55.208, R5=74.750, R10=81.458, mAP=39.927, mINP=9.047
+SK+NIR+CP+TEXT: R1=55.236, R5=74.139, R10=81.403, mAP=39.943, mINP=9.062
+TEXT+NIR+CP+SK: R1=67.324, R5=84.260, R10=89.424, mAP=50.071, mINP=10.205
++----------------+--------+--------+--------+--------+--------+
+|      task      |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++----------------+--------+--------+--------+--------+--------+
+|      NIR       | 16.441 | 27.185 | 32.710 | 13.047 | 3.524  |
+|       CP       | 64.833 | 77.389 | 82.917 | 44.907 | 10.512 |
+|       SK       | 38.222 | 54.861 | 62.569 | 26.284 | 5.161  |
+|      TEXT      | 26.565 | 43.152 | 51.163 | 21.214 | 4.628  |
+|     NIR+CP     | 55.741 | 74.158 | 80.739 | 40.355 | 8.716  |
+|     CP+NIR     | 52.292 | 70.458 | 77.694 | 37.079 | 8.606  |
+|     NIR+SK     | 36.412 | 54.782 | 62.974 | 27.507 | 5.772  |
+|     SK+NIR     | 33.542 | 52.069 | 60.694 | 24.967 | 5.575  |
+|    NIR+TEXT    | 33.612 | 52.998 | 61.736 | 25.528 | 5.408  |
+|    TEXT+NIR    | 39.961 | 59.158 | 66.903 | 30.358 | 6.269  |
+|     CP+SK      | 46.056 | 65.972 | 73.944 | 34.188 | 7.638  |
+|     SK+CP      | 47.861 | 66.611 | 74.208 | 34.432 | 7.605  |
+|    CP+TEXT     | 48.292 | 66.722 | 74.319 | 35.023 | 7.871  |
+|    TEXT+CP     | 61.330 | 78.033 | 83.507 | 45.597 | 9.220  |
+|    SK+TEXT     | 39.569 | 59.722 | 67.833 | 29.433 | 6.643  |
+|    TEXT+SK     | 51.064 | 71.413 | 78.526 | 38.866 | 7.794  |
+|   NIR+CP+SK    | 55.089 | 74.724 | 81.707 | 40.642 | 8.632  |
+|   CP+NIR+SK    | 51.153 | 71.236 | 79.194 | 37.158 | 8.302  |
+|   SK+NIR+CP    | 50.986 | 70.417 | 78.292 | 36.925 | 8.253  |
+|  NIR+CP+TEXT   | 59.127 | 76.470 | 83.146 | 42.959 | 9.123  |
+|  CP+NIR+TEXT   | 54.375 | 73.375 | 80.250 | 39.674 | 9.173  |
+|  TEXT+NIR+CP   | 66.454 | 82.670 | 88.238 | 49.326 | 10.119 |
+|  NIR+SK+TEXT   | 50.293 | 70.667 | 78.360 | 37.007 | 7.672  |
+|  SK+NIR+TEXT   | 47.625 | 67.014 | 75.569 | 34.075 | 7.517  |
+|  TEXT+NIR+SK   | 57.418 | 76.593 | 83.546 | 42.829 | 8.608  |
+|   CP+SK+TEXT   | 51.347 | 69.611 | 77.361 | 36.881 | 8.208  |
+|   SK+CP+TEXT   | 50.792 | 69.250 | 77.083 | 36.910 | 8.308  |
+|   TEXT+CP+SK   | 63.778 | 80.593 | 86.366 | 47.521 | 9.589  |
+| NIR+CP+SK+TEXT | 60.240 | 78.139 | 83.866 | 43.820 | 9.278  |
+| CP+NIR+SK+TEXT | 55.208 | 74.750 | 81.458 | 39.927 | 9.047  |
+| SK+NIR+CP+TEXT | 55.236 | 74.139 | 81.403 | 39.943 | 9.062  |
+| TEXT+NIR+CP+SK | 67.324 | 84.260 | 89.424 | 50.071 | 10.205 |
+|    ONE_AVER    | 36.515 | 50.647 | 57.340 | 26.363 | 5.956  |
+|    TWO_AVER    | 45.478 | 64.341 | 71.923 | 33.611 | 7.260  |
+|   THREE_AVER   | 54.870 | 73.552 | 80.759 | 40.159 | 8.625  |
+|   FOUR_AVER    | 59.502 | 77.822 | 84.038 | 43.440 | 9.398  |
++----------------+--------+--------+--------+--------+--------+
+Epoch[3] Iteration[100/423] Loss: 56.8979, cone_mmsdm_loss: 19.0543, ctwo_mmsdm_loss: 14.2686, cthree_mmsdm_loss: 12.2393, cfour_mmsdm_loss: 11.3357, Acc: 0.000, Base Lr: 4.60e-06
+Epoch[3] Iteration[200/423] Loss: 53.9482, cone_mmsdm_loss: 18.7220, ctwo_mmsdm_loss: 13.4199, cthree_mmsdm_loss: 11.3557, cfour_mmsdm_loss: 10.4506, Acc: 0.000, Base Lr: 4.60e-06
+Epoch[3] Iteration[300/423] Loss: 51.5920, cone_mmsdm_loss: 18.4063, ctwo_mmsdm_loss: 12.7401, cthree_mmsdm_loss: 10.6688, cfour_mmsdm_loss: 9.7768, Acc: 0.000, Base Lr: 4.60e-06
+Epoch[3] Iteration[400/423] Loss: 49.8791, cone_mmsdm_loss: 18.1859, ctwo_mmsdm_loss: 12.2413, cthree_mmsdm_loss: 10.1672, cfour_mmsdm_loss: 9.2848, Acc: 0.000, Base Lr: 4.60e-06
+One Modality Evaluating...
+NIR: R1=21.036, R5=33.151, R10=39.041, mAP=16.865, mINP=4.413
+CP: R1=70.722, R5=82.347, R10=86.792, mAP=51.846, mINP=14.669
+SK: R1=43.861, R5=60.486, R10=68.139, mAP=32.140, mINP=7.088
+TEXT: R1=28.488, R5=43.197, R10=50.548, mAP=23.151, mINP=5.496
+
+Two Modalities Evaluating...
+NIR+CP: R1=69.803, R5=85.084, R10=90.043, mAP=53.786, mINP=14.654
+CP+NIR: R1=65.986, R5=82.514, R10=87.903, mAP=50.737, mINP=14.739
+NIR+SK: R1=47.962, R5=67.453, R10=75.108, mAP=37.144, mINP=8.431
+SK+NIR: R1=45.403, R5=65.500, R10=73.222, mAP=34.473, mINP=8.394
+NIR+TEXT: R1=45.746, R5=64.959, R10=72.576, mAP=35.652, mINP=8.599
+TEXT+NIR: R1=50.670, R5=69.280, R10=76.399, mAP=40.851, mINP=9.486
+CP+SK: R1=59.417, R5=77.014, R10=83.750, mAP=46.748, mINP=12.982
+SK+CP: R1=60.514, R5=77.361, R10=83.708, mAP=47.038, mINP=13.179
+CP+TEXT: R1=60.667, R5=76.389, R10=82.194, mAP=46.674, mINP=12.893
+TEXT+CP: R1=71.723, R5=84.499, R10=89.296, mAP=57.094, mINP=14.409
+SK+TEXT: R1=51.153, R5=69.819, R10=76.750, mAP=39.789, mINP=10.155
+TEXT+SK: R1=63.706, R5=79.911, R10=85.418, mAP=50.285, mINP=11.487
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=70.647, R5=85.640, R10=90.686, mAP=54.647, mINP=14.555
+CP+NIR+SK: R1=66.653, R5=83.222, R10=88.597, mAP=51.286, mINP=14.436
+SK+NIR+CP: R1=66.944, R5=83.125, R10=88.639, mAP=51.063, mINP=14.331
+NIR+CP+TEXT: R1=72.010, R5=86.897, R10=91.530, mAP=55.891, mINP=15.076
+CP+NIR+TEXT: R1=67.625, R5=84.153, R10=89.472, mAP=52.686, mINP=15.306
+TEXT+NIR+CP: R1=77.440, R5=89.972, R10=93.856, mAP=61.936, mINP=16.078
+NIR+SK+TEXT: R1=65.573, R5=82.647, R10=88.029, mAP=49.601, mINP=12.105
+SK+NIR+TEXT: R1=61.236, R5=79.625, R10=85.847, mAP=46.273, mINP=12.106
+TEXT+NIR+SK: R1=71.346, R5=86.510, R10=90.881, mAP=55.423, mINP=12.858
+CP+SK+TEXT: R1=63.389, R5=79.375, R10=85.236, mAP=49.132, mINP=13.846
+SK+CP+TEXT: R1=63.514, R5=80.028, R10=85.431, mAP=49.228, mINP=13.984
+TEXT+CP+SK: R1=74.737, R5=87.407, R10=91.623, mAP=59.849, mINP=15.071
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=73.161, R5=87.578, R10=91.588, mAP=57.127, mINP=15.397
+CP+NIR+SK+TEXT: R1=69.278, R5=85.056, R10=90.319, mAP=53.500, mINP=15.279
+SK+NIR+CP+TEXT: R1=68.861, R5=84.556, R10=89.625, mAP=53.447, mINP=15.340
+TEXT+NIR+CP+SK: R1=78.704, R5=91.036, R10=94.460, mAP=62.960, mINP=15.974
++----------------+--------+--------+--------+--------+--------+
+|      task      |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++----------------+--------+--------+--------+--------+--------+
+|      NIR       | 21.036 | 33.151 | 39.041 | 16.865 | 4.413  |
+|       CP       | 70.722 | 82.347 | 86.792 | 51.846 | 14.669 |
+|       SK       | 43.861 | 60.486 | 68.139 | 32.140 | 7.088  |
+|      TEXT      | 28.488 | 43.197 | 50.548 | 23.151 | 5.496  |
+|     NIR+CP     | 69.803 | 85.084 | 90.043 | 53.786 | 14.654 |
+|     CP+NIR     | 65.986 | 82.514 | 87.903 | 50.737 | 14.739 |
+|     NIR+SK     | 47.962 | 67.453 | 75.108 | 37.144 | 8.431  |
+|     SK+NIR     | 45.403 | 65.500 | 73.222 | 34.473 | 8.394  |
+|    NIR+TEXT    | 45.746 | 64.959 | 72.576 | 35.652 | 8.599  |
+|    TEXT+NIR    | 50.670 | 69.280 | 76.399 | 40.851 | 9.486  |
+|     CP+SK      | 59.417 | 77.014 | 83.750 | 46.748 | 12.982 |
+|     SK+CP      | 60.514 | 77.361 | 83.708 | 47.038 | 13.179 |
+|    CP+TEXT     | 60.667 | 76.389 | 82.194 | 46.674 | 12.893 |
+|    TEXT+CP     | 71.723 | 84.499 | 89.296 | 57.094 | 14.409 |
+|    SK+TEXT     | 51.153 | 69.819 | 76.750 | 39.789 | 10.155 |
+|    TEXT+SK     | 63.706 | 79.911 | 85.418 | 50.285 | 11.487 |
+|   NIR+CP+SK    | 70.647 | 85.640 | 90.686 | 54.647 | 14.555 |
+|   CP+NIR+SK    | 66.653 | 83.222 | 88.597 | 51.286 | 14.436 |
+|   SK+NIR+CP    | 66.944 | 83.125 | 88.639 | 51.063 | 14.331 |
+|  NIR+CP+TEXT   | 72.010 | 86.897 | 91.530 | 55.891 | 15.076 |
+|  CP+NIR+TEXT   | 67.625 | 84.153 | 89.472 | 52.686 | 15.306 |
+|  TEXT+NIR+CP   | 77.440 | 89.972 | 93.856 | 61.936 | 16.078 |
+|  NIR+SK+TEXT   | 65.573 | 82.647 | 88.029 | 49.601 | 12.105 |
+|  SK+NIR+TEXT   | 61.236 | 79.625 | 85.847 | 46.273 | 12.106 |
+|  TEXT+NIR+SK   | 71.346 | 86.510 | 90.881 | 55.423 | 12.858 |
+|   CP+SK+TEXT   | 63.389 | 79.375 | 85.236 | 49.132 | 13.846 |
+|   SK+CP+TEXT   | 63.514 | 80.028 | 85.431 | 49.228 | 13.984 |
+|   TEXT+CP+SK   | 74.737 | 87.407 | 91.623 | 59.849 | 15.071 |
+| NIR+CP+SK+TEXT | 73.161 | 87.578 | 91.588 | 57.127 | 15.397 |
+| CP+NIR+SK+TEXT | 69.278 | 85.056 | 90.319 | 53.500 | 15.279 |
+| SK+NIR+CP+TEXT | 68.861 | 84.556 | 89.625 | 53.447 | 15.340 |
+| TEXT+NIR+CP+SK | 78.704 | 91.036 | 94.460 | 62.960 | 15.974 |
+|    ONE_AVER    | 41.027 | 54.795 | 61.130 | 31.000 | 7.917  |
+|    TWO_AVER    | 57.729 | 74.982 | 81.364 | 45.023 | 11.617 |
+|   THREE_AVER   | 68.426 | 84.050 | 89.152 | 53.085 | 14.146 |
+|   FOUR_AVER    | 72.501 | 87.056 | 91.498 | 56.758 | 15.498 |
++----------------+--------+--------+--------+--------+--------+
+Epoch[4] Iteration[100/423] Loss: 40.9659, cone_mmsdm_loss: 16.9108, ctwo_mmsdm_loss: 9.6268, cthree_mmsdm_loss: 7.6155, cfour_mmsdm_loss: 6.8128, Acc: 0.000, Base Lr: 6.40e-06
+Epoch[4] Iteration[200/423] Loss: 39.6030, cone_mmsdm_loss: 16.7444, ctwo_mmsdm_loss: 9.2363, cthree_mmsdm_loss: 7.2126, cfour_mmsdm_loss: 6.4097, Acc: 0.000, Base Lr: 6.40e-06
+Epoch[4] Iteration[300/423] Loss: 38.6696, cone_mmsdm_loss: 16.5848, ctwo_mmsdm_loss: 8.9431, cthree_mmsdm_loss: 6.9623, cfour_mmsdm_loss: 6.1795, Acc: 0.000, Base Lr: 6.40e-06
+Epoch[4] Iteration[400/423] Loss: 37.5538, cone_mmsdm_loss: 16.3721, ctwo_mmsdm_loss: 8.6129, cthree_mmsdm_loss: 6.6670, cfour_mmsdm_loss: 5.9018, Acc: 0.000, Base Lr: 6.40e-06
+One Modality Evaluating...
+NIR: R1=24.633, R5=37.784, R10=43.933, mAP=19.954, mINP=4.943
+CP: R1=72.819, R5=83.681, R10=88.208, mAP=55.303, mINP=16.766
+SK: R1=47.833, R5=64.375, R10=71.222, mAP=35.678, mINP=8.463
+TEXT: R1=28.449, R5=44.820, R10=52.166, mAP=24.100, mINP=5.914
+
+Two Modalities Evaluating...
+NIR+CP: R1=75.338, R5=88.652, R10=92.739, mAP=59.488, mINP=17.951
+CP+NIR: R1=73.014, R5=87.069, R10=91.583, mAP=56.810, mINP=18.094
+NIR+SK: R1=53.669, R5=70.398, R10=77.525, mAP=42.068, mINP=10.392
+SK+NIR: R1=50.694, R5=68.875, R10=76.125, mAP=39.548, mINP=10.397
+NIR+TEXT: R1=51.904, R5=70.216, R10=77.046, mAP=41.385, mINP=10.493
+TEXT+NIR: R1=56.144, R5=73.895, R10=80.299, mAP=46.115, mINP=11.428
+CP+SK: R1=65.556, R5=80.611, R10=86.194, mAP=51.587, mINP=15.851
+SK+CP: R1=65.556, R5=81.042, R10=86.097, mAP=51.634, mINP=15.938
+CP+TEXT: R1=65.847, R5=81.028, R10=86.333, mAP=52.314, mINP=15.765
+TEXT+CP: R1=76.199, R5=88.133, R10=92.000, mAP=62.202, mINP=17.438
+SK+TEXT: R1=55.681, R5=72.875, R10=79.847, mAP=44.444, mINP=12.547
+TEXT+SK: R1=68.011, R5=82.510, R10=87.474, mAP=54.725, mINP=14.041
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=75.751, R5=89.007, R10=92.815, mAP=59.954, mINP=17.966
+CP+NIR+SK: R1=72.819, R5=87.611, R10=91.528, mAP=56.938, mINP=17.783
+SK+NIR+CP: R1=72.750, R5=87.083, R10=91.597, mAP=56.763, mINP=17.703
+NIR+CP+TEXT: R1=77.794, R5=90.465, R10=93.890, mAP=62.173, mINP=18.592
+CP+NIR+TEXT: R1=74.472, R5=88.458, R10=92.694, mAP=59.200, mINP=18.868
+TEXT+NIR+CP: R1=82.598, R5=92.554, R10=95.452, mAP=67.408, mINP=19.606
+NIR+SK+TEXT: R1=69.880, R5=85.151, R10=90.321, mAP=55.157, mINP=15.054
+SK+NIR+TEXT: R1=66.278, R5=82.833, R10=88.486, mAP=51.796, mINP=14.900
+TEXT+NIR+SK: R1=75.058, R5=88.543, R10=92.504, mAP=60.188, mINP=15.683
+CP+SK+TEXT: R1=68.833, R5=83.000, R10=88.222, mAP=54.390, mINP=16.966
+SK+CP+TEXT: R1=68.514, R5=83.097, R10=88.208, mAP=54.310, mINP=17.019
+TEXT+CP+SK: R1=78.620, R5=89.247, R10=92.981, mAP=64.445, mINP=18.647
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=79.060, R5=90.484, R10=93.918, mAP=63.056, mINP=19.178
+CP+NIR+SK+TEXT: R1=75.375, R5=88.750, R10=92.958, mAP=59.578, mINP=18.802
+SK+NIR+CP+TEXT: R1=75.014, R5=88.819, R10=92.569, mAP=59.468, mINP=18.945
+TEXT+NIR+CP+SK: R1=83.601, R5=93.086, R10=95.729, mAP=68.026, mINP=19.955
++----------------+--------+--------+--------+--------+--------+
+|      task      |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++----------------+--------+--------+--------+--------+--------+
+|      NIR       | 24.633 | 37.784 | 43.933 | 19.954 | 4.943  |
+|       CP       | 72.819 | 83.681 | 88.208 | 55.303 | 16.766 |
+|       SK       | 47.833 | 64.375 | 71.222 | 35.678 | 8.463  |
+|      TEXT      | 28.449 | 44.820 | 52.166 | 24.100 | 5.914  |
+|     NIR+CP     | 75.338 | 88.652 | 92.739 | 59.488 | 17.951 |
+|     CP+NIR     | 73.014 | 87.069 | 91.583 | 56.810 | 18.094 |
+|     NIR+SK     | 53.669 | 70.398 | 77.525 | 42.068 | 10.392 |
+|     SK+NIR     | 50.694 | 68.875 | 76.125 | 39.548 | 10.397 |
+|    NIR+TEXT    | 51.904 | 70.216 | 77.046 | 41.385 | 10.493 |
+|    TEXT+NIR    | 56.144 | 73.895 | 80.299 | 46.115 | 11.428 |
+|     CP+SK      | 65.556 | 80.611 | 86.194 | 51.587 | 15.851 |
+|     SK+CP      | 65.556 | 81.042 | 86.097 | 51.634 | 15.938 |
+|    CP+TEXT     | 65.847 | 81.028 | 86.333 | 52.314 | 15.765 |
+|    TEXT+CP     | 76.199 | 88.133 | 92.000 | 62.202 | 17.438 |
+|    SK+TEXT     | 55.681 | 72.875 | 79.847 | 44.444 | 12.547 |
+|    TEXT+SK     | 68.011 | 82.510 | 87.474 | 54.725 | 14.041 |
+|   NIR+CP+SK    | 75.751 | 89.007 | 92.815 | 59.954 | 17.966 |
+|   CP+NIR+SK    | 72.819 | 87.611 | 91.528 | 56.938 | 17.783 |
+|   SK+NIR+CP    | 72.750 | 87.083 | 91.597 | 56.763 | 17.703 |
+|  NIR+CP+TEXT   | 77.794 | 90.465 | 93.890 | 62.173 | 18.592 |
+|  CP+NIR+TEXT   | 74.472 | 88.458 | 92.694 | 59.200 | 18.868 |
+|  TEXT+NIR+CP   | 82.598 | 92.554 | 95.452 | 67.408 | 19.606 |
+|  NIR+SK+TEXT   | 69.880 | 85.151 | 90.321 | 55.157 | 15.054 |
+|  SK+NIR+TEXT   | 66.278 | 82.833 | 88.486 | 51.796 | 14.900 |
+|  TEXT+NIR+SK   | 75.058 | 88.543 | 92.504 | 60.188 | 15.683 |
+|   CP+SK+TEXT   | 68.833 | 83.000 | 88.222 | 54.390 | 16.966 |
+|   SK+CP+TEXT   | 68.514 | 83.097 | 88.208 | 54.310 | 17.019 |
+|   TEXT+CP+SK   | 78.620 | 89.247 | 92.981 | 64.445 | 18.647 |
+| NIR+CP+SK+TEXT | 79.060 | 90.484 | 93.918 | 63.056 | 19.178 |
+| CP+NIR+SK+TEXT | 75.375 | 88.750 | 92.958 | 59.578 | 18.802 |
+| SK+NIR+CP+TEXT | 75.014 | 88.819 | 92.569 | 59.468 | 18.945 |
+| TEXT+NIR+CP+SK | 83.601 | 93.086 | 95.729 | 68.026 | 19.955 |
+|    ONE_AVER    | 43.434 | 57.665 | 63.882 | 33.758 | 9.022  |
+|    TWO_AVER    | 63.134 | 78.775 | 84.439 | 50.193 | 14.195 |
+|   THREE_AVER   | 73.614 | 87.254 | 91.558 | 58.560 | 17.399 |
+|   FOUR_AVER    | 78.262 | 90.285 | 93.794 | 62.532 | 19.220 |
++----------------+--------+--------+--------+--------+--------+
+Epoch[5] Iteration[100/423] Loss: 32.7297, cone_mmsdm_loss: 15.5218, ctwo_mmsdm_loss: 7.1764, cthree_mmsdm_loss: 5.3630, cfour_mmsdm_loss: 4.6685, Acc: 0.000, Base Lr: 8.20e-06
+Epoch[5] Iteration[200/423] Loss: 31.7862, cone_mmsdm_loss: 15.3306, ctwo_mmsdm_loss: 6.8870, cthree_mmsdm_loss: 5.1197, cfour_mmsdm_loss: 4.4489, Acc: 0.000, Base Lr: 8.20e-06
+Epoch[5] Iteration[300/423] Loss: 31.0925, cone_mmsdm_loss: 15.2000, ctwo_mmsdm_loss: 6.6671, cthree_mmsdm_loss: 4.9388, cfour_mmsdm_loss: 4.2865, Acc: 0.000, Base Lr: 8.20e-06
+Epoch[5] Iteration[400/423] Loss: 30.4024, cone_mmsdm_loss: 15.0654, ctwo_mmsdm_loss: 6.4572, cthree_mmsdm_loss: 4.7597, cfour_mmsdm_loss: 4.1201, Acc: 0.000, Base Lr: 8.20e-06
+One Modality Evaluating...
+NIR: R1=28.269, R5=41.861, R10=48.739, mAP=22.702, mINP=5.575
+CP: R1=74.597, R5=84.931, R10=88.917, mAP=58.212, mINP=18.985
+SK: R1=51.167, R5=67.347, R10=73.917, mAP=39.355, mINP=9.893
+TEXT: R1=31.385, R5=48.476, R10=55.596, mAP=26.526, mINP=6.670
+
+Two Modalities Evaluating...
+NIR+CP: R1=79.281, R5=91.540, R10=94.839, mAP=64.086, mINP=20.527
+CP+NIR: R1=76.514, R5=89.639, R10=93.708, mAP=61.283, mINP=20.717
+NIR+SK: R1=59.002, R5=77.132, R10=83.386, mAP=46.906, mINP=12.143
+SK+NIR: R1=55.292, R5=74.653, R10=81.819, mAP=44.287, mINP=12.022
+NIR+TEXT: R1=54.417, R5=72.422, R10=79.856, mAP=43.928, mINP=11.920
+TEXT+NIR: R1=58.759, R5=75.612, R10=82.288, mAP=48.702, mINP=12.750
+CP+SK: R1=68.736, R5=82.500, R10=87.472, mAP=54.819, mINP=17.689
+SK+CP: R1=68.167, R5=82.708, R10=87.486, mAP=54.782, mINP=17.594
+CP+TEXT: R1=67.611, R5=82.139, R10=87.056, mAP=54.915, mINP=17.425
+TEXT+CP: R1=78.028, R5=88.892, R10=92.238, mAP=65.052, mINP=19.170
+SK+TEXT: R1=58.153, R5=74.542, R10=81.097, mAP=47.391, mINP=14.084
+TEXT+SK: R1=70.371, R5=83.939, R10=88.432, mAP=58.082, mINP=15.700
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=81.285, R5=91.923, R10=95.137, mAP=64.842, mINP=20.733
+CP+NIR+SK: R1=77.583, R5=90.208, R10=93.903, mAP=61.752, mINP=20.516
+SK+NIR+CP: R1=77.125, R5=90.222, R10=94.028, mAP=61.409, mINP=20.425
+NIR+CP+TEXT: R1=81.122, R5=92.297, R10=95.252, mAP=66.152, mINP=21.207
+CP+NIR+TEXT: R1=77.819, R5=90.528, R10=94.236, mAP=62.994, mINP=21.415
+TEXT+NIR+CP: R1=84.776, R5=93.934, R10=96.643, mAP=70.974, mINP=22.014
+NIR+SK+TEXT: R1=73.861, R5=87.827, R10=92.345, mAP=59.345, mINP=17.761
+SK+NIR+TEXT: R1=70.292, R5=85.917, R10=90.875, mAP=56.104, mINP=17.437
+TEXT+NIR+SK: R1=78.792, R5=90.875, R10=94.211, mAP=64.440, mINP=18.136
+CP+SK+TEXT: R1=70.972, R5=84.375, R10=89.222, mAP=57.283, mINP=18.848
+SK+CP+TEXT: R1=70.819, R5=84.653, R10=89.389, mAP=57.334, mINP=18.923
+TEXT+CP+SK: R1=80.814, R5=90.742, R10=94.161, mAP=67.722, mINP=20.810
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=82.062, R5=92.585, R10=95.530, mAP=67.247, mINP=22.182
+CP+NIR+SK+TEXT: R1=78.903, R5=91.222, R10=94.958, mAP=63.709, mINP=21.516
+SK+NIR+CP+TEXT: R1=79.153, R5=91.181, R10=94.750, mAP=63.648, mINP=21.556
+TEXT+NIR+CP+SK: R1=86.161, R5=94.864, R10=97.053, mAP=71.867, mINP=22.656
++----------------+--------+--------+--------+--------+--------+
+|      task      |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++----------------+--------+--------+--------+--------+--------+
+|      NIR       | 28.269 | 41.861 | 48.739 | 22.702 | 5.575  |
+|       CP       | 74.597 | 84.931 | 88.917 | 58.212 | 18.985 |
+|       SK       | 51.167 | 67.347 | 73.917 | 39.355 | 9.893  |
+|      TEXT      | 31.385 | 48.476 | 55.596 | 26.526 | 6.670  |
+|     NIR+CP     | 79.281 | 91.540 | 94.839 | 64.086 | 20.527 |
+|     CP+NIR     | 76.514 | 89.639 | 93.708 | 61.283 | 20.717 |
+|     NIR+SK     | 59.002 | 77.132 | 83.386 | 46.906 | 12.143 |
+|     SK+NIR     | 55.292 | 74.653 | 81.819 | 44.287 | 12.022 |
+|    NIR+TEXT    | 54.417 | 72.422 | 79.856 | 43.928 | 11.920 |
+|    TEXT+NIR    | 58.759 | 75.612 | 82.288 | 48.702 | 12.750 |
+|     CP+SK      | 68.736 | 82.500 | 87.472 | 54.819 | 17.689 |
+|     SK+CP      | 68.167 | 82.708 | 87.486 | 54.782 | 17.594 |
+|    CP+TEXT     | 67.611 | 82.139 | 87.056 | 54.915 | 17.425 |
+|    TEXT+CP     | 78.028 | 88.892 | 92.238 | 65.052 | 19.170 |
+|    SK+TEXT     | 58.153 | 74.542 | 81.097 | 47.391 | 14.084 |
+|    TEXT+SK     | 70.371 | 83.939 | 88.432 | 58.082 | 15.700 |
+|   NIR+CP+SK    | 81.285 | 91.923 | 95.137 | 64.842 | 20.733 |
+|   CP+NIR+SK    | 77.583 | 90.208 | 93.903 | 61.752 | 20.516 |
+|   SK+NIR+CP    | 77.125 | 90.222 | 94.028 | 61.409 | 20.425 |
+|  NIR+CP+TEXT   | 81.122 | 92.297 | 95.252 | 66.152 | 21.207 |
+|  CP+NIR+TEXT   | 77.819 | 90.528 | 94.236 | 62.994 | 21.415 |
+|  TEXT+NIR+CP   | 84.776 | 93.934 | 96.643 | 70.974 | 22.014 |
+|  NIR+SK+TEXT   | 73.861 | 87.827 | 92.345 | 59.345 | 17.761 |
+|  SK+NIR+TEXT   | 70.292 | 85.917 | 90.875 | 56.104 | 17.437 |
+|  TEXT+NIR+SK   | 78.792 | 90.875 | 94.211 | 64.440 | 18.136 |
+|   CP+SK+TEXT   | 70.972 | 84.375 | 89.222 | 57.283 | 18.848 |
+|   SK+CP+TEXT   | 70.819 | 84.653 | 89.389 | 57.334 | 18.923 |
+|   TEXT+CP+SK   | 80.814 | 90.742 | 94.161 | 67.722 | 20.810 |
+| NIR+CP+SK+TEXT | 82.062 | 92.585 | 95.530 | 67.247 | 22.182 |
+| CP+NIR+SK+TEXT | 78.903 | 91.222 | 94.958 | 63.709 | 21.516 |
+| SK+NIR+CP+TEXT | 79.153 | 91.181 | 94.750 | 63.648 | 21.556 |
+| TEXT+NIR+CP+SK | 86.161 | 94.864 | 97.053 | 71.867 | 22.656 |
+|    ONE_AVER    | 46.354 | 60.654 | 66.792 | 36.699 | 10.281 |
+|    TWO_AVER    | 66.194 | 81.310 | 86.640 | 53.686 | 15.978 |
+|   THREE_AVER   | 77.105 | 89.459 | 93.283 | 62.529 | 19.852 |
+|   FOUR_AVER    | 81.570 | 92.463 | 95.573 | 66.618 | 21.978 |
++----------------+--------+--------+--------+--------+--------+

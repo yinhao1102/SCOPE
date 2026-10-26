@@ -1,0 +1,452 @@
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Using 1 GPUs
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Namespace(local_rank=0
+ name='unireid4orbench_text_w_3'
+ log_dir='logs'
+ output_dir='./logs/ORBench/20251230_200127_unireid4orbench_text_w_3'
+ log_period=100
+ eval_period=1
+ val_dataset='test'
+ resume=False
+ resume_ckpt_file=''
+ pretrain_choice='ViT-B/16'
+ temperature=0.07
+ img_aug=False
+ nlp_aug=False
+ num_colors=60
+ cmt_depth=4
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ lr_factor=5.0
+ use_imageid=False
+ MCQ=False
+ MCM=False
+ MLM=False
+ MSM=False
+ MCQMLM=False
+ MSMMLM=False
+ loss_names='itc'
+ cmm_loss_weight=1.0
+ mcm_loss_weight=1.0
+ mlm_loss_weight=1.0
+ mcq_loss_weight=1.0
+ id_loss_weight=1.0
+ img_size=(384
+ 128)
+ stride_size=16
+ text_length=77
+ vocab_size=49408
+ learnable_loss_weight=False
+ label_mix=False
+ optimizer='Adam'
+ lr=1e-05
+ bias_lr_factor=2.0
+ momentum=0.9
+ weight_decay=4e-05
+ weight_decay_bias=0.0
+ alpha=0.9
+ beta=0.999
+ num_epoch=60
+ milestones=(20
+ 50)
+ gamma=0.1
+ warmup_factor=0.1
+ warmup_epochs=5
+ warmup_method='linear'
+ lrscheduler='step'
+ target_lr=1e-08
+ power=0.9
+ dataset_name='ORBench'
+ sampler='random'
+ num_instance=4
+ root_dir='/home/yinhao/data'
+ batch_size=64
+ test_batch_size=512
+ num_workers=8
+ training=True
+ test_setting=0
+ fusion_way='add'
+ only_sketch=False
+ only_text=False
+ pa=0.1
+ only_fusion_loss=False
+ four_fusion_loss=False
+ focal_three_fusion_loss=False
+ focal_three_fusion_loss2=False
+ focal_three_fusion_loss3=False
+ focal_three_fusion_loss4=False
+ focal_three_fusion_loss5=False
+ focal_three_fusion_loss6=False
+ focalthree_fusion_loss=False
+ focalthree_four_fusion_loss=False
+ al=1.0
+ ga=2.0
+ klp=1.0
+ distributed=False)
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Training only sketch False
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Using only text False
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Using only fusion False
+2025-12-30 20:01:27,890 CLIP2ReID INFO: Using add fusion method
+2025-12-30 20:01:34,145 CLIP2ReID.model INFO: Load pretrained ViT-B/16 CLIP model with model config: {'embed_dim': 512, 'image_resolution': (384, 128), 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'context_length': 77, 'vocab_size': 49408, 'transformer_width': 512, 'transformer_heads': 8, 'transformer_layers': 12, 'stride_size': 16}
+2025-12-30 20:01:37,327 CLIP2ReID.train INFO: start training
+2025-12-30 20:02:54,212 CLIP2ReID.train INFO: Epoch[1] Iteration[100/423] Loss: 15.7565, itc_loss: 0.0000, one_loss: 5.7417, two_loss: 3.4337, three_loss: 3.3230, four_loss: 3.2581, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-30 20:04:06,419 CLIP2ReID.train INFO: Epoch[1] Iteration[200/423] Loss: 14.4162, itc_loss: 0.0000, one_loss: 5.4875, two_loss: 3.0975, three_loss: 2.9566, four_loss: 2.8746, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-30 20:05:22,852 CLIP2ReID.train INFO: Epoch[1] Iteration[300/423] Loss: 13.2945, itc_loss: 0.0000, one_loss: 5.2808, two_loss: 2.8157, three_loss: 2.6474, four_loss: 2.5506, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-30 20:06:35,360 CLIP2ReID.train INFO: Epoch[1] Iteration[400/423] Loss: 12.3983, itc_loss: 0.0000, one_loss: 5.1200, two_loss: 2.5909, three_loss: 2.3983, four_loss: 2.2891, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-30 20:06:53,292 CLIP2ReID.train INFO: Epoch 1 done. Time per batch: 0.747[s] Speed: 85.7[samples/s]
+2025-12-30 20:06:53,293 CLIP2ReID.train INFO: Validation Results - Epoch: 1
+2025-12-30 20:29:42,385 CLIP2ReID.train INFO: Epoch[2] Iteration[100/423] Loss: 7.9988, itc_loss: 0.0000, one_loss: 4.3474, two_loss: 1.4742, three_loss: 1.1662, four_loss: 1.0110, Acc: 0.000, Base Lr: 2.80e-06
+2025-12-30 20:30:53,395 CLIP2ReID.train INFO: Epoch[2] Iteration[200/423] Loss: 7.4766, itc_loss: 0.0000, one_loss: 4.2455, two_loss: 1.3337, three_loss: 1.0235, four_loss: 0.8739, Acc: 0.000, Base Lr: 2.80e-06
+2025-12-30 20:32:04,711 CLIP2ReID.train INFO: Epoch[2] Iteration[300/423] Loss: 7.1448, itc_loss: 0.0000, one_loss: 4.1758, two_loss: 1.2418, three_loss: 0.9351, four_loss: 0.7922, Acc: 0.000, Base Lr: 2.80e-06
+2025-12-30 20:33:15,906 CLIP2ReID.train INFO: Epoch[2] Iteration[400/423] Loss: 6.9061, itc_loss: 0.0000, one_loss: 4.1245, two_loss: 1.1748, three_loss: 0.8719, four_loss: 0.7349, Acc: 0.000, Base Lr: 2.80e-06
+2025-12-30 20:33:32,286 CLIP2ReID.train INFO: Epoch 2 done. Time per batch: 0.719[s] Speed: 89.0[samples/s]
+2025-12-30 20:33:32,286 CLIP2ReID.train INFO: Validation Results - Epoch: 2
+2025-12-30 20:56:36,662 CLIP2ReID.train INFO: Epoch[3] Iteration[100/423] Loss: 5.7644, itc_loss: 0.0000, one_loss: 3.8698, two_loss: 0.8488, three_loss: 0.5743, four_loss: 0.4715, Acc: 0.000, Base Lr: 4.60e-06
+2025-12-30 20:57:47,832 CLIP2ReID.train INFO: Epoch[3] Iteration[200/423] Loss: 5.6284, itc_loss: 0.0000, one_loss: 3.8324, two_loss: 0.8059, three_loss: 0.5429, four_loss: 0.4471, Acc: 0.000, Base Lr: 4.60e-06
+2025-12-30 20:58:59,074 CLIP2ReID.train INFO: Epoch[3] Iteration[300/423] Loss: 5.5104, itc_loss: 0.0000, one_loss: 3.8031, two_loss: 0.7693, three_loss: 0.5142, four_loss: 0.4238, Acc: 0.000, Base Lr: 4.60e-06
+2025-12-30 21:00:10,366 CLIP2ReID.train INFO: Epoch[3] Iteration[400/423] Loss: 5.4196, itc_loss: 0.0000, one_loss: 3.7798, two_loss: 0.7401, three_loss: 0.4928, four_loss: 0.4069, Acc: 0.000, Base Lr: 4.60e-06
+2025-12-30 21:00:26,826 CLIP2ReID.train INFO: Epoch 3 done. Time per batch: 0.719[s] Speed: 89.0[samples/s]
+2025-12-30 21:00:26,826 CLIP2ReID.train INFO: Validation Results - Epoch: 3
+2025-12-30 21:23:35,438 CLIP2ReID.train INFO: Epoch[4] Iteration[100/423] Loss: 4.8178, itc_loss: 0.0000, one_loss: 3.6261, two_loss: 0.5517, three_loss: 0.3503, four_loss: 0.2896, Acc: 0.000, Base Lr: 6.40e-06
+2025-12-30 21:24:46,368 CLIP2ReID.train INFO: Epoch[4] Iteration[200/423] Loss: 4.7740, itc_loss: 0.0000, one_loss: 3.6138, two_loss: 0.5359, three_loss: 0.3414, four_loss: 0.2830, Acc: 0.000, Base Lr: 6.40e-06
+2025-12-30 21:25:57,585 CLIP2ReID.train INFO: Epoch[4] Iteration[300/423] Loss: 4.7143, itc_loss: 0.0000, one_loss: 3.5977, two_loss: 0.5155, three_loss: 0.3282, four_loss: 0.2728, Acc: 0.000, Base Lr: 6.40e-06
+2025-12-30 21:27:08,707 CLIP2ReID.train INFO: Epoch[4] Iteration[400/423] Loss: 4.6746, itc_loss: 0.0000, one_loss: 3.5858, two_loss: 0.5008, three_loss: 0.3204, four_loss: 0.2675, Acc: 0.000, Base Lr: 6.40e-06
+2025-12-30 21:27:25,175 CLIP2ReID.train INFO: Epoch 4 done. Time per batch: 0.719[s] Speed: 89.1[samples/s]
+2025-12-30 21:27:25,176 CLIP2ReID.train INFO: Validation Results - Epoch: 4
+2025-12-30 21:50:08,608 CLIP2ReID.train INFO: Epoch[5] Iteration[100/423] Loss: 4.3549, itc_loss: 0.0000, one_loss: 3.4916, two_loss: 0.3911, three_loss: 0.2548, four_loss: 0.2174, Acc: 0.000, Base Lr: 8.20e-06
+2025-12-30 21:51:20,026 CLIP2ReID.train INFO: Epoch[5] Iteration[200/423] Loss: 4.3033, itc_loss: 0.0000, one_loss: 3.4775, two_loss: 0.3733, three_loss: 0.2438, four_loss: 0.2086, Acc: 0.000, Base Lr: 8.20e-06
+2025-12-30 21:52:33,873 CLIP2ReID.train INFO: Epoch[5] Iteration[300/423] Loss: 4.2851, itc_loss: 0.0000, one_loss: 3.4729, two_loss: 0.3660, three_loss: 0.2402, four_loss: 0.2060, Acc: 0.000, Base Lr: 8.20e-06
+2025-12-30 21:53:45,095 CLIP2ReID.train INFO: Epoch[5] Iteration[400/423] Loss: 4.2627, itc_loss: 0.0000, one_loss: 3.4644, two_loss: 0.3573, three_loss: 0.2368, four_loss: 0.2042, Acc: 0.000, Base Lr: 8.20e-06
+2025-12-30 21:54:01,579 CLIP2ReID.train INFO: Epoch 5 done. Time per batch: 0.729[s] Speed: 87.8[samples/s]
+2025-12-30 21:54:01,579 CLIP2ReID.train INFO: Validation Results - Epoch: 5
+2025-12-30 22:17:31,936 CLIP2ReID.train INFO: Epoch[6] Iteration[100/423] Loss: 4.0008, itc_loss: 0.0000, one_loss: 3.3871, two_loss: 0.2730, three_loss: 0.1822, four_loss: 0.1585, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:18:44,067 CLIP2ReID.train INFO: Epoch[6] Iteration[200/423] Loss: 4.0087, itc_loss: 0.0000, one_loss: 3.3854, two_loss: 0.2736, three_loss: 0.1861, four_loss: 0.1635, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:19:55,049 CLIP2ReID.train INFO: Epoch[6] Iteration[300/423] Loss: 4.0076, itc_loss: 0.0000, one_loss: 3.3831, two_loss: 0.2725, three_loss: 0.1871, four_loss: 0.1649, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:21:06,263 CLIP2ReID.train INFO: Epoch[6] Iteration[400/423] Loss: 3.9988, itc_loss: 0.0000, one_loss: 3.3794, two_loss: 0.2693, three_loss: 0.1858, four_loss: 0.1642, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:21:22,742 CLIP2ReID.train INFO: Epoch 6 done. Time per batch: 0.721[s] Speed: 88.8[samples/s]
+2025-12-30 22:21:22,742 CLIP2ReID.train INFO: Validation Results - Epoch: 6
+2025-12-30 22:43:42,195 CLIP2ReID.train INFO: Epoch[7] Iteration[100/423] Loss: 3.8511, itc_loss: 0.0000, one_loss: 3.3291, two_loss: 0.2213, three_loss: 0.1583, four_loss: 0.1425, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:44:53,084 CLIP2ReID.train INFO: Epoch[7] Iteration[200/423] Loss: 3.8360, itc_loss: 0.0000, one_loss: 3.3251, two_loss: 0.2169, three_loss: 0.1548, four_loss: 0.1392, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:46:04,160 CLIP2ReID.train INFO: Epoch[7] Iteration[300/423] Loss: 3.8337, itc_loss: 0.0000, one_loss: 3.3237, two_loss: 0.2159, three_loss: 0.1547, four_loss: 0.1394, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:47:15,747 CLIP2ReID.train INFO: Epoch[7] Iteration[400/423] Loss: 3.8329, itc_loss: 0.0000, one_loss: 3.3228, two_loss: 0.2154, three_loss: 0.1550, four_loss: 0.1397, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 22:47:32,196 CLIP2ReID.train INFO: Epoch 7 done. Time per batch: 0.719[s] Speed: 89.1[samples/s]
+2025-12-30 22:47:32,196 CLIP2ReID.train INFO: Validation Results - Epoch: 7
+2025-12-30 23:09:54,818 CLIP2ReID.train INFO: Epoch[8] Iteration[100/423] Loss: 3.7908, itc_loss: 0.0000, one_loss: 3.3035, two_loss: 0.1994, three_loss: 0.1501, four_loss: 0.1377, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:11:05,759 CLIP2ReID.train INFO: Epoch[8] Iteration[200/423] Loss: 3.7902, itc_loss: 0.0000, one_loss: 3.3029, two_loss: 0.1992, three_loss: 0.1502, four_loss: 0.1379, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:12:16,701 CLIP2ReID.train INFO: Epoch[8] Iteration[300/423] Loss: 3.7711, itc_loss: 0.0000, one_loss: 3.2982, two_loss: 0.1937, three_loss: 0.1456, four_loss: 0.1335, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:13:27,885 CLIP2ReID.train INFO: Epoch[8] Iteration[400/423] Loss: 3.7694, itc_loss: 0.0000, one_loss: 3.2976, two_loss: 0.1932, three_loss: 0.1453, four_loss: 0.1332, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:13:44,285 CLIP2ReID.train INFO: Epoch 8 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-30 23:13:44,285 CLIP2ReID.train INFO: Validation Results - Epoch: 8
+2025-12-30 23:35:47,568 CLIP2ReID.train INFO: Epoch[9] Iteration[100/423] Loss: 3.7343, itc_loss: 0.0000, one_loss: 3.2829, two_loss: 0.1807, three_loss: 0.1405, four_loss: 0.1303, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:36:58,546 CLIP2ReID.train INFO: Epoch[9] Iteration[200/423] Loss: 3.7320, itc_loss: 0.0000, one_loss: 3.2823, two_loss: 0.1801, three_loss: 0.1399, four_loss: 0.1297, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:38:09,600 CLIP2ReID.train INFO: Epoch[9] Iteration[300/423] Loss: 3.7258, itc_loss: 0.0000, one_loss: 3.2811, two_loss: 0.1785, three_loss: 0.1382, four_loss: 0.1281, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:39:20,659 CLIP2ReID.train INFO: Epoch[9] Iteration[400/423] Loss: 3.7239, itc_loss: 0.0000, one_loss: 3.2803, two_loss: 0.1778, three_loss: 0.1379, four_loss: 0.1279, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-30 23:39:37,145 CLIP2ReID.train INFO: Epoch 9 done. Time per batch: 0.718[s] Speed: 89.2[samples/s]
+2025-12-30 23:39:37,145 CLIP2ReID.train INFO: Validation Results - Epoch: 9
+2025-12-31 00:01:54,171 CLIP2ReID.train INFO: Epoch[10] Iteration[100/423] Loss: 3.6571, itc_loss: 0.0000, one_loss: 3.2614, two_loss: 0.1577, three_loss: 0.1234, four_loss: 0.1146, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:03:05,000 CLIP2ReID.train INFO: Epoch[10] Iteration[200/423] Loss: 3.6542, itc_loss: 0.0000, one_loss: 3.2602, two_loss: 0.1567, three_loss: 0.1229, four_loss: 0.1144, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:04:15,977 CLIP2ReID.train INFO: Epoch[10] Iteration[300/423] Loss: 3.6659, itc_loss: 0.0000, one_loss: 3.2628, two_loss: 0.1599, three_loss: 0.1259, four_loss: 0.1173, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:05:27,144 CLIP2ReID.train INFO: Epoch[10] Iteration[400/423] Loss: 3.6606, itc_loss: 0.0000, one_loss: 3.2616, two_loss: 0.1584, three_loss: 0.1246, four_loss: 0.1160, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:05:43,614 CLIP2ReID.train INFO: Epoch 10 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 00:05:43,614 CLIP2ReID.train INFO: Validation Results - Epoch: 10
+2025-12-31 00:28:00,653 CLIP2ReID.train INFO: Epoch[11] Iteration[100/423] Loss: 3.6900, itc_loss: 0.0000, one_loss: 3.2641, two_loss: 0.1650, three_loss: 0.1344, four_loss: 0.1265, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:29:11,635 CLIP2ReID.train INFO: Epoch[11] Iteration[200/423] Loss: 3.6782, itc_loss: 0.0000, one_loss: 3.2624, two_loss: 0.1621, three_loss: 0.1309, four_loss: 0.1228, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:30:22,676 CLIP2ReID.train INFO: Epoch[11] Iteration[300/423] Loss: 3.6727, itc_loss: 0.0000, one_loss: 3.2613, two_loss: 0.1606, three_loss: 0.1294, four_loss: 0.1213, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:31:33,714 CLIP2ReID.train INFO: Epoch[11] Iteration[400/423] Loss: 3.6644, itc_loss: 0.0000, one_loss: 3.2594, two_loss: 0.1583, three_loss: 0.1273, four_loss: 0.1194, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:31:50,198 CLIP2ReID.train INFO: Epoch 11 done. Time per batch: 0.717[s] Speed: 89.2[samples/s]
+2025-12-31 00:31:50,198 CLIP2ReID.train INFO: Validation Results - Epoch: 11
+2025-12-31 00:54:28,446 CLIP2ReID.train INFO: Epoch[12] Iteration[100/423] Loss: 3.6535, itc_loss: 0.0000, one_loss: 3.2555, two_loss: 0.1548, three_loss: 0.1254, four_loss: 0.1178, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:55:39,440 CLIP2ReID.train INFO: Epoch[12] Iteration[200/423] Loss: 3.6456, itc_loss: 0.0000, one_loss: 3.2537, two_loss: 0.1525, three_loss: 0.1234, four_loss: 0.1160, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:56:50,312 CLIP2ReID.train INFO: Epoch[12] Iteration[300/423] Loss: 3.6477, itc_loss: 0.0000, one_loss: 3.2537, two_loss: 0.1529, three_loss: 0.1242, four_loss: 0.1169, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:58:01,351 CLIP2ReID.train INFO: Epoch[12] Iteration[400/423] Loss: 3.6404, itc_loss: 0.0000, one_loss: 3.2518, two_loss: 0.1508, three_loss: 0.1225, four_loss: 0.1153, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 00:58:17,715 CLIP2ReID.train INFO: Epoch 12 done. Time per batch: 0.716[s] Speed: 89.3[samples/s]
+2025-12-31 00:58:17,715 CLIP2ReID.train INFO: Validation Results - Epoch: 12
+2025-12-31 01:20:33,195 CLIP2ReID.train INFO: Epoch[13] Iteration[100/423] Loss: 3.5879, itc_loss: 0.0000, one_loss: 3.2378, two_loss: 0.1353, three_loss: 0.1106, four_loss: 0.1042, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:21:44,423 CLIP2ReID.train INFO: Epoch[13] Iteration[200/423] Loss: 3.6308, itc_loss: 0.0000, one_loss: 3.2482, two_loss: 0.1475, three_loss: 0.1209, four_loss: 0.1142, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:22:55,885 CLIP2ReID.train INFO: Epoch[13] Iteration[300/423] Loss: 3.6632, itc_loss: 0.0000, one_loss: 3.2604, two_loss: 0.1584, three_loss: 0.1262, four_loss: 0.1181, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:24:07,117 CLIP2ReID.train INFO: Epoch[13] Iteration[400/423] Loss: 3.6493, itc_loss: 0.0000, one_loss: 3.2564, two_loss: 0.1542, three_loss: 0.1232, four_loss: 0.1155, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:24:23,614 CLIP2ReID.train INFO: Epoch 13 done. Time per batch: 0.720[s] Speed: 88.9[samples/s]
+2025-12-31 01:24:23,614 CLIP2ReID.train INFO: Validation Results - Epoch: 13
+2025-12-31 01:46:26,281 CLIP2ReID.train INFO: Epoch[14] Iteration[100/423] Loss: 3.5968, itc_loss: 0.0000, one_loss: 3.2386, two_loss: 0.1374, three_loss: 0.1136, four_loss: 0.1073, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:47:37,226 CLIP2ReID.train INFO: Epoch[14] Iteration[200/423] Loss: 3.6070, itc_loss: 0.0000, one_loss: 3.2412, two_loss: 0.1403, three_loss: 0.1159, four_loss: 0.1095, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:48:48,408 CLIP2ReID.train INFO: Epoch[14] Iteration[300/423] Loss: 3.5969, itc_loss: 0.0000, one_loss: 3.2387, two_loss: 0.1374, three_loss: 0.1135, four_loss: 0.1073, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:49:59,510 CLIP2ReID.train INFO: Epoch[14] Iteration[400/423] Loss: 3.5994, itc_loss: 0.0000, one_loss: 3.2392, two_loss: 0.1381, three_loss: 0.1142, four_loss: 0.1080, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 01:50:15,842 CLIP2ReID.train INFO: Epoch 14 done. Time per batch: 0.717[s] Speed: 89.2[samples/s]
+2025-12-31 01:50:15,842 CLIP2ReID.train INFO: Validation Results - Epoch: 14
+2025-12-31 02:12:15,709 CLIP2ReID.train INFO: Epoch[15] Iteration[100/423] Loss: 3.5833, itc_loss: 0.0000, one_loss: 3.2341, two_loss: 0.1330, three_loss: 0.1110, four_loss: 0.1052, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:13:26,474 CLIP2ReID.train INFO: Epoch[15] Iteration[200/423] Loss: 3.5968, itc_loss: 0.0000, one_loss: 3.2374, two_loss: 0.1369, three_loss: 0.1143, four_loss: 0.1082, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:14:37,472 CLIP2ReID.train INFO: Epoch[15] Iteration[300/423] Loss: 3.6000, itc_loss: 0.0000, one_loss: 3.2378, two_loss: 0.1376, three_loss: 0.1153, four_loss: 0.1093, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:15:48,461 CLIP2ReID.train INFO: Epoch[15] Iteration[400/423] Loss: 3.5998, itc_loss: 0.0000, one_loss: 3.2379, two_loss: 0.1376, three_loss: 0.1152, four_loss: 0.1092, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:16:04,886 CLIP2ReID.train INFO: Epoch 15 done. Time per batch: 0.716[s] Speed: 89.4[samples/s]
+2025-12-31 02:16:04,886 CLIP2ReID.train INFO: Validation Results - Epoch: 15
+2025-12-31 02:38:05,876 CLIP2ReID.train INFO: Epoch[16] Iteration[100/423] Loss: 3.5853, itc_loss: 0.0000, one_loss: 3.2324, two_loss: 0.1327, three_loss: 0.1128, four_loss: 0.1074, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:39:16,592 CLIP2ReID.train INFO: Epoch[16] Iteration[200/423] Loss: 3.5714, itc_loss: 0.0000, one_loss: 3.2299, two_loss: 0.1291, three_loss: 0.1089, four_loss: 0.1035, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:40:27,209 CLIP2ReID.train INFO: Epoch[16] Iteration[300/423] Loss: 3.5681, itc_loss: 0.0000, one_loss: 3.2294, two_loss: 0.1283, three_loss: 0.1079, four_loss: 0.1024, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:41:37,890 CLIP2ReID.train INFO: Epoch[16] Iteration[400/423] Loss: 3.5744, itc_loss: 0.0000, one_loss: 3.2308, two_loss: 0.1300, three_loss: 0.1096, four_loss: 0.1041, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 02:41:54,214 CLIP2ReID.train INFO: Epoch 16 done. Time per batch: 0.713[s] Speed: 89.7[samples/s]
+2025-12-31 02:41:54,214 CLIP2ReID.train INFO: Validation Results - Epoch: 16
+2025-12-31 03:03:47,383 CLIP2ReID.train INFO: Epoch[17] Iteration[100/423] Loss: 3.5801, itc_loss: 0.0000, one_loss: 3.2309, two_loss: 0.1311, three_loss: 0.1117, four_loss: 0.1064, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:04:58,023 CLIP2ReID.train INFO: Epoch[17] Iteration[200/423] Loss: 3.5737, itc_loss: 0.0000, one_loss: 3.2301, two_loss: 0.1296, three_loss: 0.1096, four_loss: 0.1043, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:06:08,866 CLIP2ReID.train INFO: Epoch[17] Iteration[300/423] Loss: 3.5673, itc_loss: 0.0000, one_loss: 3.2285, two_loss: 0.1278, three_loss: 0.1081, four_loss: 0.1028, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:07:19,586 CLIP2ReID.train INFO: Epoch[17] Iteration[400/423] Loss: 3.5629, itc_loss: 0.0000, one_loss: 3.2275, two_loss: 0.1266, three_loss: 0.1070, four_loss: 0.1018, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:07:35,958 CLIP2ReID.train INFO: Epoch 17 done. Time per batch: 0.714[s] Speed: 89.6[samples/s]
+2025-12-31 03:07:35,958 CLIP2ReID.train INFO: Validation Results - Epoch: 17
+2025-12-31 03:29:24,982 CLIP2ReID.train INFO: Epoch[18] Iteration[100/423] Loss: 3.5679, itc_loss: 0.0000, one_loss: 3.2280, two_loss: 0.1278, three_loss: 0.1087, four_loss: 0.1034, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:30:35,659 CLIP2ReID.train INFO: Epoch[18] Iteration[200/423] Loss: 3.5648, itc_loss: 0.0000, one_loss: 3.2273, two_loss: 0.1269, three_loss: 0.1080, four_loss: 0.1027, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:31:46,439 CLIP2ReID.train INFO: Epoch[18] Iteration[300/423] Loss: 3.5688, itc_loss: 0.0000, one_loss: 3.2280, two_loss: 0.1279, three_loss: 0.1091, four_loss: 0.1038, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:32:56,985 CLIP2ReID.train INFO: Epoch[18] Iteration[400/423] Loss: 3.5639, itc_loss: 0.0000, one_loss: 3.2270, two_loss: 0.1266, three_loss: 0.1077, four_loss: 0.1025, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:33:13,342 CLIP2ReID.train INFO: Epoch 18 done. Time per batch: 0.714[s] Speed: 89.7[samples/s]
+2025-12-31 03:33:13,342 CLIP2ReID.train INFO: Validation Results - Epoch: 18
+2025-12-31 03:55:01,023 CLIP2ReID.train INFO: Epoch[19] Iteration[100/423] Loss: 3.5624, itc_loss: 0.0000, one_loss: 3.2271, two_loss: 0.1263, three_loss: 0.1072, four_loss: 0.1018, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:56:11,787 CLIP2ReID.train INFO: Epoch[19] Iteration[200/423] Loss: 3.5643, itc_loss: 0.0000, one_loss: 3.2272, two_loss: 0.1267, three_loss: 0.1078, four_loss: 0.1025, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:57:22,098 CLIP2ReID.train INFO: Epoch[19] Iteration[300/423] Loss: 3.5541, itc_loss: 0.0000, one_loss: 3.2248, two_loss: 0.1239, three_loss: 0.1054, four_loss: 0.1002, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:58:32,797 CLIP2ReID.train INFO: Epoch[19] Iteration[400/423] Loss: 3.5489, itc_loss: 0.0000, one_loss: 3.2236, two_loss: 0.1224, three_loss: 0.1040, four_loss: 0.0988, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 03:58:49,115 CLIP2ReID.train INFO: Epoch 19 done. Time per batch: 0.713[s] Speed: 89.8[samples/s]
+2025-12-31 03:58:49,115 CLIP2ReID.train INFO: Validation Results - Epoch: 19
+2025-12-31 04:20:39,215 CLIP2ReID.train INFO: Epoch[20] Iteration[100/423] Loss: 3.5713, itc_loss: 0.0000, one_loss: 3.2276, two_loss: 0.1281, three_loss: 0.1103, four_loss: 0.1053, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 04:21:49,879 CLIP2ReID.train INFO: Epoch[20] Iteration[200/423] Loss: 3.5597, itc_loss: 0.0000, one_loss: 3.2253, two_loss: 0.1251, three_loss: 0.1071, four_loss: 0.1021, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 04:23:00,520 CLIP2ReID.train INFO: Epoch[20] Iteration[300/423] Loss: 3.5589, itc_loss: 0.0000, one_loss: 3.2252, two_loss: 0.1249, three_loss: 0.1069, four_loss: 0.1019, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 04:24:11,488 CLIP2ReID.train INFO: Epoch[20] Iteration[400/423] Loss: 3.5523, itc_loss: 0.0000, one_loss: 3.2237, two_loss: 0.1231, three_loss: 0.1052, four_loss: 0.1003, Acc: 0.000, Base Lr: 1.00e-05
+2025-12-31 04:24:27,827 CLIP2ReID.train INFO: Epoch 20 done. Time per batch: 0.715[s] Speed: 89.5[samples/s]
+2025-12-31 04:24:27,827 CLIP2ReID.train INFO: Validation Results - Epoch: 20
+2025-12-31 04:46:31,614 CLIP2ReID.train INFO: Epoch[21] Iteration[100/423] Loss: 3.5172, itc_loss: 0.0000, one_loss: 3.2152, two_loss: 0.1133, three_loss: 0.0968, four_loss: 0.0920, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 04:47:42,251 CLIP2ReID.train INFO: Epoch[21] Iteration[200/423] Loss: 3.5159, itc_loss: 0.0000, one_loss: 3.2146, two_loss: 0.1128, three_loss: 0.0966, four_loss: 0.0920, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 04:48:53,160 CLIP2ReID.train INFO: Epoch[21] Iteration[300/423] Loss: 3.5209, itc_loss: 0.0000, one_loss: 3.2152, two_loss: 0.1139, three_loss: 0.0982, four_loss: 0.0936, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 04:50:03,956 CLIP2ReID.train INFO: Epoch[21] Iteration[400/423] Loss: 3.5218, itc_loss: 0.0000, one_loss: 3.2150, two_loss: 0.1140, three_loss: 0.0986, four_loss: 0.0942, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 04:50:20,317 CLIP2ReID.train INFO: Epoch 21 done. Time per batch: 0.714[s] Speed: 89.6[samples/s]
+2025-12-31 04:50:20,318 CLIP2ReID.train INFO: Validation Results - Epoch: 21
+2025-12-31 05:12:14,783 CLIP2ReID.train INFO: Epoch[22] Iteration[100/423] Loss: 3.4842, itc_loss: 0.0000, one_loss: 3.2056, two_loss: 0.1032, three_loss: 0.0897, four_loss: 0.0858, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:13:25,776 CLIP2ReID.train INFO: Epoch[22] Iteration[200/423] Loss: 3.5065, itc_loss: 0.0000, one_loss: 3.2103, two_loss: 0.1093, three_loss: 0.0955, four_loss: 0.0914, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:14:36,674 CLIP2ReID.train INFO: Epoch[22] Iteration[300/423] Loss: 3.5090, itc_loss: 0.0000, one_loss: 3.2111, two_loss: 0.1100, three_loss: 0.0960, four_loss: 0.0919, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:15:47,600 CLIP2ReID.train INFO: Epoch[22] Iteration[400/423] Loss: 3.5106, itc_loss: 0.0000, one_loss: 3.2114, two_loss: 0.1105, three_loss: 0.0964, four_loss: 0.0923, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:16:03,966 CLIP2ReID.train INFO: Epoch 22 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 05:16:03,966 CLIP2ReID.train INFO: Validation Results - Epoch: 22
+2025-12-31 05:37:59,762 CLIP2ReID.train INFO: Epoch[23] Iteration[100/423] Loss: 3.5380, itc_loss: 0.0000, one_loss: 3.2177, two_loss: 0.1182, three_loss: 0.1034, four_loss: 0.0988, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:39:10,819 CLIP2ReID.train INFO: Epoch[23] Iteration[200/423] Loss: 3.5276, itc_loss: 0.0000, one_loss: 3.2149, two_loss: 0.1151, three_loss: 0.1010, four_loss: 0.0966, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:40:21,751 CLIP2ReID.train INFO: Epoch[23] Iteration[300/423] Loss: 3.5257, itc_loss: 0.0000, one_loss: 3.2144, two_loss: 0.1145, three_loss: 0.1005, four_loss: 0.0963, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:41:32,651 CLIP2ReID.train INFO: Epoch[23] Iteration[400/423] Loss: 3.5241, itc_loss: 0.0000, one_loss: 3.2140, two_loss: 0.1141, three_loss: 0.1001, four_loss: 0.0959, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 05:41:48,988 CLIP2ReID.train INFO: Epoch 23 done. Time per batch: 0.716[s] Speed: 89.3[samples/s]
+2025-12-31 05:41:48,988 CLIP2ReID.train INFO: Validation Results - Epoch: 23
+2025-12-31 06:03:53,141 CLIP2ReID.train INFO: Epoch[24] Iteration[100/423] Loss: 3.5200, itc_loss: 0.0000, one_loss: 3.2126, two_loss: 0.1127, three_loss: 0.0994, four_loss: 0.0952, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:05:03,992 CLIP2ReID.train INFO: Epoch[24] Iteration[200/423] Loss: 3.5022, itc_loss: 0.0000, one_loss: 3.2092, two_loss: 0.1080, three_loss: 0.0946, four_loss: 0.0905, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:06:14,638 CLIP2ReID.train INFO: Epoch[24] Iteration[300/423] Loss: 3.5022, itc_loss: 0.0000, one_loss: 3.2090, two_loss: 0.1080, three_loss: 0.0946, four_loss: 0.0905, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:07:25,542 CLIP2ReID.train INFO: Epoch[24] Iteration[400/423] Loss: 3.5092, itc_loss: 0.0000, one_loss: 3.2105, two_loss: 0.1099, three_loss: 0.0965, four_loss: 0.0924, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:07:41,951 CLIP2ReID.train INFO: Epoch 24 done. Time per batch: 0.715[s] Speed: 89.6[samples/s]
+2025-12-31 06:07:41,951 CLIP2ReID.train INFO: Validation Results - Epoch: 24
+2025-12-31 06:29:41,257 CLIP2ReID.train INFO: Epoch[25] Iteration[100/423] Loss: 3.4863, itc_loss: 0.0000, one_loss: 3.2062, two_loss: 0.1038, three_loss: 0.0902, four_loss: 0.0861, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:30:51,857 CLIP2ReID.train INFO: Epoch[25] Iteration[200/423] Loss: 3.5037, itc_loss: 0.0000, one_loss: 3.2095, two_loss: 0.1084, three_loss: 0.0949, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:32:02,530 CLIP2ReID.train INFO: Epoch[25] Iteration[300/423] Loss: 3.5061, itc_loss: 0.0000, one_loss: 3.2099, two_loss: 0.1091, three_loss: 0.0956, four_loss: 0.0915, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:33:13,229 CLIP2ReID.train INFO: Epoch[25] Iteration[400/423] Loss: 3.5121, itc_loss: 0.0000, one_loss: 3.2110, two_loss: 0.1106, three_loss: 0.0973, four_loss: 0.0932, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:33:29,521 CLIP2ReID.train INFO: Epoch 25 done. Time per batch: 0.713[s] Speed: 89.7[samples/s]
+2025-12-31 06:33:29,521 CLIP2ReID.train INFO: Validation Results - Epoch: 25
+2025-12-31 06:55:43,143 CLIP2ReID.train INFO: Epoch[26] Iteration[100/423] Loss: 3.5416, itc_loss: 0.0000, one_loss: 3.2166, two_loss: 0.1184, three_loss: 0.1053, four_loss: 0.1012, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:56:53,933 CLIP2ReID.train INFO: Epoch[26] Iteration[200/423] Loss: 3.5226, itc_loss: 0.0000, one_loss: 3.2128, two_loss: 0.1133, three_loss: 0.1003, four_loss: 0.0963, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:58:04,564 CLIP2ReID.train INFO: Epoch[26] Iteration[300/423] Loss: 3.5181, itc_loss: 0.0000, one_loss: 3.2120, two_loss: 0.1121, three_loss: 0.0990, four_loss: 0.0950, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:59:15,502 CLIP2ReID.train INFO: Epoch[26] Iteration[400/423] Loss: 3.5173, itc_loss: 0.0000, one_loss: 3.2118, two_loss: 0.1119, three_loss: 0.0988, four_loss: 0.0948, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 06:59:31,968 CLIP2ReID.train INFO: Epoch 26 done. Time per batch: 0.715[s] Speed: 89.5[samples/s]
+2025-12-31 06:59:31,968 CLIP2ReID.train INFO: Validation Results - Epoch: 26
+2025-12-31 07:21:35,939 CLIP2ReID.train INFO: Epoch[27] Iteration[100/423] Loss: 3.4976, itc_loss: 0.0000, one_loss: 3.2078, two_loss: 0.1066, three_loss: 0.0936, four_loss: 0.0896, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:22:46,678 CLIP2ReID.train INFO: Epoch[27] Iteration[200/423] Loss: 3.4947, itc_loss: 0.0000, one_loss: 3.2070, two_loss: 0.1057, three_loss: 0.0929, four_loss: 0.0890, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:23:57,608 CLIP2ReID.train INFO: Epoch[27] Iteration[300/423] Loss: 3.5033, itc_loss: 0.0000, one_loss: 3.2089, two_loss: 0.1081, three_loss: 0.0952, four_loss: 0.0911, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:25:08,597 CLIP2ReID.train INFO: Epoch[27] Iteration[400/423] Loss: 3.5079, itc_loss: 0.0000, one_loss: 3.2099, two_loss: 0.1094, three_loss: 0.0964, four_loss: 0.0923, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:25:25,002 CLIP2ReID.train INFO: Epoch 27 done. Time per batch: 0.716[s] Speed: 89.4[samples/s]
+2025-12-31 07:25:25,003 CLIP2ReID.train INFO: Validation Results - Epoch: 27
+2025-12-31 07:47:26,677 CLIP2ReID.train INFO: Epoch[28] Iteration[100/423] Loss: 3.5014, itc_loss: 0.0000, one_loss: 3.2086, two_loss: 0.1076, three_loss: 0.0945, four_loss: 0.0906, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:48:37,470 CLIP2ReID.train INFO: Epoch[28] Iteration[200/423] Loss: 3.5012, itc_loss: 0.0000, one_loss: 3.2084, two_loss: 0.1075, three_loss: 0.0946, four_loss: 0.0907, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:49:48,184 CLIP2ReID.train INFO: Epoch[28] Iteration[300/423] Loss: 3.5098, itc_loss: 0.0000, one_loss: 3.2100, two_loss: 0.1098, three_loss: 0.0969, four_loss: 0.0930, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:50:58,715 CLIP2ReID.train INFO: Epoch[28] Iteration[400/423] Loss: 3.5122, itc_loss: 0.0000, one_loss: 3.2105, two_loss: 0.1104, three_loss: 0.0976, four_loss: 0.0936, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 07:51:15,050 CLIP2ReID.train INFO: Epoch 28 done. Time per batch: 0.715[s] Speed: 89.6[samples/s]
+2025-12-31 07:51:15,050 CLIP2ReID.train INFO: Validation Results - Epoch: 28
+2025-12-31 08:13:23,642 CLIP2ReID.train INFO: Epoch[29] Iteration[100/423] Loss: 3.4918, itc_loss: 0.0000, one_loss: 3.2062, two_loss: 0.1049, three_loss: 0.0923, four_loss: 0.0884, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:14:34,722 CLIP2ReID.train INFO: Epoch[29] Iteration[200/423] Loss: 3.4907, itc_loss: 0.0000, one_loss: 3.2058, two_loss: 0.1045, three_loss: 0.0921, four_loss: 0.0882, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:15:45,812 CLIP2ReID.train INFO: Epoch[29] Iteration[300/423] Loss: 3.4887, itc_loss: 0.0000, one_loss: 3.2054, two_loss: 0.1039, three_loss: 0.0916, four_loss: 0.0878, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:16:56,734 CLIP2ReID.train INFO: Epoch[29] Iteration[400/423] Loss: 3.4977, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1064, three_loss: 0.0939, four_loss: 0.0900, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:17:13,174 CLIP2ReID.train INFO: Epoch 29 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 08:17:13,174 CLIP2ReID.train INFO: Validation Results - Epoch: 29
+2025-12-31 08:39:22,237 CLIP2ReID.train INFO: Epoch[30] Iteration[100/423] Loss: 3.5070, itc_loss: 0.0000, one_loss: 3.2093, two_loss: 0.1090, three_loss: 0.0964, four_loss: 0.0924, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:40:33,237 CLIP2ReID.train INFO: Epoch[30] Iteration[200/423] Loss: 3.4981, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1065, three_loss: 0.0940, four_loss: 0.0902, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:41:43,701 CLIP2ReID.train INFO: Epoch[30] Iteration[300/423] Loss: 3.5030, itc_loss: 0.0000, one_loss: 3.2083, two_loss: 0.1078, three_loss: 0.0954, four_loss: 0.0915, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:42:54,614 CLIP2ReID.train INFO: Epoch[30] Iteration[400/423] Loss: 3.5004, itc_loss: 0.0000, one_loss: 3.2078, two_loss: 0.1071, three_loss: 0.0947, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 08:43:11,024 CLIP2ReID.train INFO: Epoch 30 done. Time per batch: 0.715[s] Speed: 89.5[samples/s]
+2025-12-31 08:43:11,024 CLIP2ReID.train INFO: Validation Results - Epoch: 30
+2025-12-31 09:05:15,334 CLIP2ReID.train INFO: Epoch[31] Iteration[100/423] Loss: 3.4978, itc_loss: 0.0000, one_loss: 3.2073, two_loss: 0.1065, three_loss: 0.0940, four_loss: 0.0901, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:06:26,171 CLIP2ReID.train INFO: Epoch[31] Iteration[200/423] Loss: 3.5073, itc_loss: 0.0000, one_loss: 3.2091, two_loss: 0.1089, three_loss: 0.0965, four_loss: 0.0927, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:07:37,189 CLIP2ReID.train INFO: Epoch[31] Iteration[300/423] Loss: 3.5058, itc_loss: 0.0000, one_loss: 3.2088, two_loss: 0.1085, three_loss: 0.0962, four_loss: 0.0924, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:08:48,095 CLIP2ReID.train INFO: Epoch[31] Iteration[400/423] Loss: 3.5029, itc_loss: 0.0000, one_loss: 3.2082, two_loss: 0.1077, three_loss: 0.0954, four_loss: 0.0916, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:09:04,477 CLIP2ReID.train INFO: Epoch 31 done. Time per batch: 0.716[s] Speed: 89.3[samples/s]
+2025-12-31 09:09:04,478 CLIP2ReID.train INFO: Validation Results - Epoch: 31
+2025-12-31 09:31:06,138 CLIP2ReID.train INFO: Epoch[32] Iteration[100/423] Loss: 3.4985, itc_loss: 0.0000, one_loss: 3.2078, two_loss: 0.1068, three_loss: 0.0939, four_loss: 0.0899, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:32:16,744 CLIP2ReID.train INFO: Epoch[32] Iteration[200/423] Loss: 3.5211, itc_loss: 0.0000, one_loss: 3.2125, two_loss: 0.1129, three_loss: 0.0999, four_loss: 0.0958, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:33:27,393 CLIP2ReID.train INFO: Epoch[32] Iteration[300/423] Loss: 3.5180, itc_loss: 0.0000, one_loss: 3.2117, two_loss: 0.1120, three_loss: 0.0992, four_loss: 0.0951, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:34:39,571 CLIP2ReID.train INFO: Epoch[32] Iteration[400/423] Loss: 3.5095, itc_loss: 0.0000, one_loss: 3.2099, two_loss: 0.1097, three_loss: 0.0969, four_loss: 0.0929, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:34:56,262 CLIP2ReID.train INFO: Epoch 32 done. Time per batch: 0.718[s] Speed: 89.1[samples/s]
+2025-12-31 09:34:56,262 CLIP2ReID.train INFO: Validation Results - Epoch: 32
+2025-12-31 09:58:32,893 CLIP2ReID.train INFO: Epoch[33] Iteration[100/423] Loss: 3.5000, itc_loss: 0.0000, one_loss: 3.2072, two_loss: 0.1068, three_loss: 0.0949, four_loss: 0.0912, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 09:59:45,339 CLIP2ReID.train INFO: Epoch[33] Iteration[200/423] Loss: 3.5054, itc_loss: 0.0000, one_loss: 3.2086, two_loss: 0.1084, three_loss: 0.0961, four_loss: 0.0923, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:00:57,169 CLIP2ReID.train INFO: Epoch[33] Iteration[300/423] Loss: 3.4966, itc_loss: 0.0000, one_loss: 3.2069, two_loss: 0.1061, three_loss: 0.0937, four_loss: 0.0899, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:02:09,063 CLIP2ReID.train INFO: Epoch[33] Iteration[400/423] Loss: 3.4999, itc_loss: 0.0000, one_loss: 3.2076, two_loss: 0.1070, three_loss: 0.0946, four_loss: 0.0907, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:02:25,843 CLIP2ReID.train INFO: Epoch 33 done. Time per batch: 0.728[s] Speed: 87.9[samples/s]
+2025-12-31 10:02:25,843 CLIP2ReID.train INFO: Validation Results - Epoch: 33
+2025-12-31 10:26:02,609 CLIP2ReID.train INFO: Epoch[34] Iteration[100/423] Loss: 3.5092, itc_loss: 0.0000, one_loss: 3.2101, two_loss: 0.1097, three_loss: 0.0968, four_loss: 0.0927, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:27:14,617 CLIP2ReID.train INFO: Epoch[34] Iteration[200/423] Loss: 3.5024, itc_loss: 0.0000, one_loss: 3.2084, two_loss: 0.1078, three_loss: 0.0951, four_loss: 0.0911, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:28:26,056 CLIP2ReID.train INFO: Epoch[34] Iteration[300/423] Loss: 3.5198, itc_loss: 0.0000, one_loss: 3.2119, two_loss: 0.1124, three_loss: 0.0997, four_loss: 0.0957, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:29:37,373 CLIP2ReID.train INFO: Epoch[34] Iteration[400/423] Loss: 3.5176, itc_loss: 0.0000, one_loss: 3.2115, two_loss: 0.1119, three_loss: 0.0991, four_loss: 0.0951, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:29:53,846 CLIP2ReID.train INFO: Epoch 34 done. Time per batch: 0.726[s] Speed: 88.2[samples/s]
+2025-12-31 10:29:53,846 CLIP2ReID.train INFO: Validation Results - Epoch: 34
+2025-12-31 10:53:48,983 CLIP2ReID.train INFO: Epoch[35] Iteration[100/423] Loss: 3.4652, itc_loss: 0.0000, one_loss: 3.2004, two_loss: 0.0975, three_loss: 0.0855, four_loss: 0.0818, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:55:01,071 CLIP2ReID.train INFO: Epoch[35] Iteration[200/423] Loss: 3.5049, itc_loss: 0.0000, one_loss: 3.2087, two_loss: 0.1083, three_loss: 0.0959, four_loss: 0.0920, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:56:12,560 CLIP2ReID.train INFO: Epoch[35] Iteration[300/423] Loss: 3.5029, itc_loss: 0.0000, one_loss: 3.2082, two_loss: 0.1078, three_loss: 0.0954, four_loss: 0.0916, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:57:24,415 CLIP2ReID.train INFO: Epoch[35] Iteration[400/423] Loss: 3.4997, itc_loss: 0.0000, one_loss: 3.2075, two_loss: 0.1069, three_loss: 0.0946, four_loss: 0.0907, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 10:57:41,366 CLIP2ReID.train INFO: Epoch 35 done. Time per batch: 0.727[s] Speed: 88.0[samples/s]
+2025-12-31 10:57:41,366 CLIP2ReID.train INFO: Validation Results - Epoch: 35
+2025-12-31 11:21:39,541 CLIP2ReID.train INFO: Epoch[36] Iteration[100/423] Loss: 3.5119, itc_loss: 0.0000, one_loss: 3.2101, two_loss: 0.1102, three_loss: 0.0978, four_loss: 0.0938, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:22:50,449 CLIP2ReID.train INFO: Epoch[36] Iteration[200/423] Loss: 3.5126, itc_loss: 0.0000, one_loss: 3.2101, two_loss: 0.1103, three_loss: 0.0980, four_loss: 0.0942, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:24:01,224 CLIP2ReID.train INFO: Epoch[36] Iteration[300/423] Loss: 3.5101, itc_loss: 0.0000, one_loss: 3.2096, two_loss: 0.1097, three_loss: 0.0973, four_loss: 0.0935, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:25:12,922 CLIP2ReID.train INFO: Epoch[36] Iteration[400/423] Loss: 3.5093, itc_loss: 0.0000, one_loss: 3.2095, two_loss: 0.1095, three_loss: 0.0971, four_loss: 0.0932, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:25:29,247 CLIP2ReID.train INFO: Epoch 36 done. Time per batch: 0.720[s] Speed: 88.9[samples/s]
+2025-12-31 11:25:29,247 CLIP2ReID.train INFO: Validation Results - Epoch: 36
+2025-12-31 11:49:34,180 CLIP2ReID.train INFO: Epoch[37] Iteration[100/423] Loss: 3.5103, itc_loss: 0.0000, one_loss: 3.2100, two_loss: 0.1099, three_loss: 0.0972, four_loss: 0.0933, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:50:45,766 CLIP2ReID.train INFO: Epoch[37] Iteration[200/423] Loss: 3.4921, itc_loss: 0.0000, one_loss: 3.2060, two_loss: 0.1048, three_loss: 0.0926, four_loss: 0.0888, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:51:57,056 CLIP2ReID.train INFO: Epoch[37] Iteration[300/423] Loss: 3.5002, itc_loss: 0.0000, one_loss: 3.2077, two_loss: 0.1070, three_loss: 0.0947, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:53:09,164 CLIP2ReID.train INFO: Epoch[37] Iteration[400/423] Loss: 3.5075, itc_loss: 0.0000, one_loss: 3.2091, two_loss: 0.1090, three_loss: 0.0966, four_loss: 0.0927, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 11:53:26,101 CLIP2ReID.train INFO: Epoch 37 done. Time per batch: 0.724[s] Speed: 88.3[samples/s]
+2025-12-31 11:53:26,101 CLIP2ReID.train INFO: Validation Results - Epoch: 37
+2025-12-31 12:17:29,297 CLIP2ReID.train INFO: Epoch[38] Iteration[100/423] Loss: 3.4785, itc_loss: 0.0000, one_loss: 3.2031, two_loss: 0.1011, three_loss: 0.0890, four_loss: 0.0852, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:18:40,727 CLIP2ReID.train INFO: Epoch[38] Iteration[200/423] Loss: 3.4817, itc_loss: 0.0000, one_loss: 3.2040, two_loss: 0.1021, three_loss: 0.0897, four_loss: 0.0859, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:19:52,153 CLIP2ReID.train INFO: Epoch[38] Iteration[300/423] Loss: 3.4927, itc_loss: 0.0000, one_loss: 3.2061, two_loss: 0.1050, three_loss: 0.0927, four_loss: 0.0888, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:21:04,400 CLIP2ReID.train INFO: Epoch[38] Iteration[400/423] Loss: 3.4990, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1067, three_loss: 0.0944, four_loss: 0.0904, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:21:20,825 CLIP2ReID.train INFO: Epoch 38 done. Time per batch: 0.723[s] Speed: 88.5[samples/s]
+2025-12-31 12:21:20,825 CLIP2ReID.train INFO: Validation Results - Epoch: 38
+2025-12-31 12:45:46,292 CLIP2ReID.train INFO: Epoch[39] Iteration[100/423] Loss: 3.4988, itc_loss: 0.0000, one_loss: 3.2076, two_loss: 0.1067, three_loss: 0.0942, four_loss: 0.0903, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:46:58,673 CLIP2ReID.train INFO: Epoch[39] Iteration[200/423] Loss: 3.4992, itc_loss: 0.0000, one_loss: 3.2077, two_loss: 0.1069, three_loss: 0.0943, four_loss: 0.0904, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:48:11,039 CLIP2ReID.train INFO: Epoch[39] Iteration[300/423] Loss: 3.4988, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1067, three_loss: 0.0944, four_loss: 0.0904, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:49:23,573 CLIP2ReID.train INFO: Epoch[39] Iteration[400/423] Loss: 3.4998, itc_loss: 0.0000, one_loss: 3.2076, two_loss: 0.1069, three_loss: 0.0946, four_loss: 0.0907, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 12:49:40,697 CLIP2ReID.train INFO: Epoch 39 done. Time per batch: 0.732[s] Speed: 87.4[samples/s]
+2025-12-31 12:49:40,697 CLIP2ReID.train INFO: Validation Results - Epoch: 39
+2025-12-31 13:13:31,316 CLIP2ReID.train INFO: Epoch[40] Iteration[100/423] Loss: 3.4838, itc_loss: 0.0000, one_loss: 3.2039, two_loss: 0.1025, three_loss: 0.0906, four_loss: 0.0868, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:14:43,508 CLIP2ReID.train INFO: Epoch[40] Iteration[200/423] Loss: 3.5019, itc_loss: 0.0000, one_loss: 3.2077, two_loss: 0.1074, three_loss: 0.0953, four_loss: 0.0915, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:15:55,817 CLIP2ReID.train INFO: Epoch[40] Iteration[300/423] Loss: 3.4980, itc_loss: 0.0000, one_loss: 3.2069, two_loss: 0.1063, three_loss: 0.0943, four_loss: 0.0905, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:17:07,740 CLIP2ReID.train INFO: Epoch[40] Iteration[400/423] Loss: 3.5043, itc_loss: 0.0000, one_loss: 3.2083, two_loss: 0.1080, three_loss: 0.0959, four_loss: 0.0921, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:17:24,412 CLIP2ReID.train INFO: Epoch 40 done. Time per batch: 0.729[s] Speed: 87.8[samples/s]
+2025-12-31 13:17:24,412 CLIP2ReID.train INFO: Validation Results - Epoch: 40
+2025-12-31 13:41:20,549 CLIP2ReID.train INFO: Epoch[41] Iteration[100/423] Loss: 3.5150, itc_loss: 0.0000, one_loss: 3.2106, two_loss: 0.1110, three_loss: 0.0987, four_loss: 0.0947, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:42:32,105 CLIP2ReID.train INFO: Epoch[41] Iteration[200/423] Loss: 3.4994, itc_loss: 0.0000, one_loss: 3.2072, two_loss: 0.1067, three_loss: 0.0946, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:43:43,169 CLIP2ReID.train INFO: Epoch[41] Iteration[300/423] Loss: 3.5066, itc_loss: 0.0000, one_loss: 3.2087, two_loss: 0.1086, three_loss: 0.0966, four_loss: 0.0927, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:44:54,124 CLIP2ReID.train INFO: Epoch[41] Iteration[400/423] Loss: 3.5041, itc_loss: 0.0000, one_loss: 3.2082, two_loss: 0.1080, three_loss: 0.0959, four_loss: 0.0921, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 13:45:10,712 CLIP2ReID.train INFO: Epoch 41 done. Time per batch: 0.721[s] Speed: 88.7[samples/s]
+2025-12-31 13:45:10,713 CLIP2ReID.train INFO: Validation Results - Epoch: 41
+2025-12-31 14:08:12,452 CLIP2ReID.train INFO: Epoch[42] Iteration[100/423] Loss: 3.4914, itc_loss: 0.0000, one_loss: 3.2056, two_loss: 0.1046, three_loss: 0.0925, four_loss: 0.0887, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:09:23,457 CLIP2ReID.train INFO: Epoch[42] Iteration[200/423] Loss: 3.4967, itc_loss: 0.0000, one_loss: 3.2066, two_loss: 0.1060, three_loss: 0.0939, four_loss: 0.0902, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:10:35,009 CLIP2ReID.train INFO: Epoch[42] Iteration[300/423] Loss: 3.4959, itc_loss: 0.0000, one_loss: 3.2065, two_loss: 0.1058, three_loss: 0.0937, four_loss: 0.0898, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:11:46,504 CLIP2ReID.train INFO: Epoch[42] Iteration[400/423] Loss: 3.4914, itc_loss: 0.0000, one_loss: 3.2055, two_loss: 0.1046, three_loss: 0.0926, four_loss: 0.0887, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:12:02,956 CLIP2ReID.train INFO: Epoch 42 done. Time per batch: 0.720[s] Speed: 88.9[samples/s]
+2025-12-31 14:12:02,956 CLIP2ReID.train INFO: Validation Results - Epoch: 42
+2025-12-31 14:35:00,527 CLIP2ReID.train INFO: Epoch[43] Iteration[100/423] Loss: 3.4953, itc_loss: 0.0000, one_loss: 3.2061, two_loss: 0.1055, three_loss: 0.0937, four_loss: 0.0900, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:36:11,642 CLIP2ReID.train INFO: Epoch[43] Iteration[200/423] Loss: 3.4920, itc_loss: 0.0000, one_loss: 3.2055, two_loss: 0.1046, three_loss: 0.0928, four_loss: 0.0891, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:37:22,886 CLIP2ReID.train INFO: Epoch[43] Iteration[300/423] Loss: 3.5012, itc_loss: 0.0000, one_loss: 3.2075, two_loss: 0.1072, three_loss: 0.0952, four_loss: 0.0914, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:38:34,046 CLIP2ReID.train INFO: Epoch[43] Iteration[400/423] Loss: 3.4984, itc_loss: 0.0000, one_loss: 3.2069, two_loss: 0.1064, three_loss: 0.0945, four_loss: 0.0907, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 14:38:50,525 CLIP2ReID.train INFO: Epoch 43 done. Time per batch: 0.719[s] Speed: 89.0[samples/s]
+2025-12-31 14:38:50,525 CLIP2ReID.train INFO: Validation Results - Epoch: 43
+2025-12-31 15:01:45,792 CLIP2ReID.train INFO: Epoch[44] Iteration[100/423] Loss: 3.5007, itc_loss: 0.0000, one_loss: 3.2071, two_loss: 0.1069, three_loss: 0.0952, four_loss: 0.0915, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:02:56,746 CLIP2ReID.train INFO: Epoch[44] Iteration[200/423] Loss: 3.5041, itc_loss: 0.0000, one_loss: 3.2080, two_loss: 0.1079, three_loss: 0.0960, four_loss: 0.0922, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:04:08,077 CLIP2ReID.train INFO: Epoch[44] Iteration[300/423] Loss: 3.4923, itc_loss: 0.0000, one_loss: 3.2056, two_loss: 0.1047, three_loss: 0.0929, four_loss: 0.0891, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:05:19,984 CLIP2ReID.train INFO: Epoch[44] Iteration[400/423] Loss: 3.4989, itc_loss: 0.0000, one_loss: 3.2070, two_loss: 0.1065, three_loss: 0.0946, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:05:36,417 CLIP2ReID.train INFO: Epoch 44 done. Time per batch: 0.720[s] Speed: 88.8[samples/s]
+2025-12-31 15:05:36,417 CLIP2ReID.train INFO: Validation Results - Epoch: 44
+2025-12-31 15:28:31,449 CLIP2ReID.train INFO: Epoch[45] Iteration[100/423] Loss: 3.5005, itc_loss: 0.0000, one_loss: 3.2076, two_loss: 0.1070, three_loss: 0.0949, four_loss: 0.0911, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:29:41,870 CLIP2ReID.train INFO: Epoch[45] Iteration[200/423] Loss: 3.4969, itc_loss: 0.0000, one_loss: 3.2067, two_loss: 0.1060, three_loss: 0.0940, four_loss: 0.0902, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:30:53,043 CLIP2ReID.train INFO: Epoch[45] Iteration[300/423] Loss: 3.4982, itc_loss: 0.0000, one_loss: 3.2070, two_loss: 0.1064, three_loss: 0.0943, four_loss: 0.0905, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:32:04,259 CLIP2ReID.train INFO: Epoch[45] Iteration[400/423] Loss: 3.4996, itc_loss: 0.0000, one_loss: 3.2072, two_loss: 0.1067, three_loss: 0.0947, four_loss: 0.0909, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:32:20,772 CLIP2ReID.train INFO: Epoch 45 done. Time per batch: 0.716[s] Speed: 89.4[samples/s]
+2025-12-31 15:32:20,773 CLIP2ReID.train INFO: Validation Results - Epoch: 45
+2025-12-31 15:55:09,215 CLIP2ReID.train INFO: Epoch[46] Iteration[100/423] Loss: 3.4924, itc_loss: 0.0000, one_loss: 3.2055, two_loss: 0.1047, three_loss: 0.0930, four_loss: 0.0893, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:56:19,681 CLIP2ReID.train INFO: Epoch[46] Iteration[200/423] Loss: 3.5006, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1070, three_loss: 0.0950, four_loss: 0.0911, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:57:30,456 CLIP2ReID.train INFO: Epoch[46] Iteration[300/423] Loss: 3.5028, itc_loss: 0.0000, one_loss: 3.2079, two_loss: 0.1076, three_loss: 0.0956, four_loss: 0.0917, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:58:41,612 CLIP2ReID.train INFO: Epoch[46] Iteration[400/423] Loss: 3.5013, itc_loss: 0.0000, one_loss: 3.2075, two_loss: 0.1072, three_loss: 0.0952, four_loss: 0.0914, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 15:58:58,091 CLIP2ReID.train INFO: Epoch 46 done. Time per batch: 0.715[s] Speed: 89.5[samples/s]
+2025-12-31 15:58:58,092 CLIP2ReID.train INFO: Validation Results - Epoch: 46
+2025-12-31 16:21:44,498 CLIP2ReID.train INFO: Epoch[47] Iteration[100/423] Loss: 3.5375, itc_loss: 0.0000, one_loss: 3.2153, two_loss: 0.1171, three_loss: 0.1046, four_loss: 0.1005, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:22:55,359 CLIP2ReID.train INFO: Epoch[47] Iteration[200/423] Loss: 3.5110, itc_loss: 0.0000, one_loss: 3.2096, two_loss: 0.1099, three_loss: 0.0977, four_loss: 0.0938, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:24:06,363 CLIP2ReID.train INFO: Epoch[47] Iteration[300/423] Loss: 3.5060, itc_loss: 0.0000, one_loss: 3.2085, two_loss: 0.1085, three_loss: 0.0965, four_loss: 0.0926, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:25:17,561 CLIP2ReID.train INFO: Epoch[47] Iteration[400/423] Loss: 3.4960, itc_loss: 0.0000, one_loss: 3.2065, two_loss: 0.1058, three_loss: 0.0938, four_loss: 0.0900, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:25:34,151 CLIP2ReID.train INFO: Epoch 47 done. Time per batch: 0.718[s] Speed: 89.2[samples/s]
+2025-12-31 16:25:34,151 CLIP2ReID.train INFO: Validation Results - Epoch: 47
+2025-12-31 16:48:19,381 CLIP2ReID.train INFO: Epoch[48] Iteration[100/423] Loss: 3.4867, itc_loss: 0.0000, one_loss: 3.2041, two_loss: 0.1031, three_loss: 0.0916, four_loss: 0.0879, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:49:30,005 CLIP2ReID.train INFO: Epoch[48] Iteration[200/423] Loss: 3.4900, itc_loss: 0.0000, one_loss: 3.2049, two_loss: 0.1041, three_loss: 0.0924, four_loss: 0.0886, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:50:41,105 CLIP2ReID.train INFO: Epoch[48] Iteration[300/423] Loss: 3.4921, itc_loss: 0.0000, one_loss: 3.2055, two_loss: 0.1047, three_loss: 0.0928, four_loss: 0.0890, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:51:52,418 CLIP2ReID.train INFO: Epoch[48] Iteration[400/423] Loss: 3.4926, itc_loss: 0.0000, one_loss: 3.2057, two_loss: 0.1048, three_loss: 0.0929, four_loss: 0.0891, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 16:52:08,774 CLIP2ReID.train INFO: Epoch 48 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 16:52:08,774 CLIP2ReID.train INFO: Validation Results - Epoch: 48
+2025-12-31 17:14:56,208 CLIP2ReID.train INFO: Epoch[49] Iteration[100/423] Loss: 3.4999, itc_loss: 0.0000, one_loss: 3.2072, two_loss: 0.1068, three_loss: 0.0949, four_loss: 0.0910, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:16:06,990 CLIP2ReID.train INFO: Epoch[49] Iteration[200/423] Loss: 3.4907, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1044, three_loss: 0.0925, four_loss: 0.0886, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:17:17,686 CLIP2ReID.train INFO: Epoch[49] Iteration[300/423] Loss: 3.4939, itc_loss: 0.0000, one_loss: 3.2059, two_loss: 0.1052, three_loss: 0.0933, four_loss: 0.0894, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:18:28,765 CLIP2ReID.train INFO: Epoch[49] Iteration[400/423] Loss: 3.4936, itc_loss: 0.0000, one_loss: 3.2058, two_loss: 0.1051, three_loss: 0.0933, four_loss: 0.0894, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:18:45,181 CLIP2ReID.train INFO: Epoch 49 done. Time per batch: 0.716[s] Speed: 89.4[samples/s]
+2025-12-31 17:18:45,181 CLIP2ReID.train INFO: Validation Results - Epoch: 49
+2025-12-31 17:41:36,400 CLIP2ReID.train INFO: Epoch[50] Iteration[100/423] Loss: 3.4852, itc_loss: 0.0000, one_loss: 3.2040, two_loss: 0.1028, three_loss: 0.0911, four_loss: 0.0873, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:42:47,229 CLIP2ReID.train INFO: Epoch[50] Iteration[200/423] Loss: 3.4887, itc_loss: 0.0000, one_loss: 3.2047, two_loss: 0.1037, three_loss: 0.0920, four_loss: 0.0882, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:43:57,796 CLIP2ReID.train INFO: Epoch[50] Iteration[300/423] Loss: 3.4863, itc_loss: 0.0000, one_loss: 3.2042, two_loss: 0.1030, three_loss: 0.0914, four_loss: 0.0877, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:45:08,833 CLIP2ReID.train INFO: Epoch[50] Iteration[400/423] Loss: 3.4829, itc_loss: 0.0000, one_loss: 3.2034, two_loss: 0.1021, three_loss: 0.0906, four_loss: 0.0868, Acc: 0.000, Base Lr: 1.00e-06
+2025-12-31 17:45:25,406 CLIP2ReID.train INFO: Epoch 50 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 17:45:25,406 CLIP2ReID.train INFO: Validation Results - Epoch: 50
+2025-12-31 18:08:46,816 CLIP2ReID.train INFO: Epoch[51] Iteration[100/423] Loss: 3.5047, itc_loss: 0.0000, one_loss: 3.2078, two_loss: 0.1080, three_loss: 0.0964, four_loss: 0.0926, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:09:57,777 CLIP2ReID.train INFO: Epoch[51] Iteration[200/423] Loss: 3.5010, itc_loss: 0.0000, one_loss: 3.2070, two_loss: 0.1070, three_loss: 0.0954, four_loss: 0.0916, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:11:09,498 CLIP2ReID.train INFO: Epoch[51] Iteration[300/423] Loss: 3.4953, itc_loss: 0.0000, one_loss: 3.2061, two_loss: 0.1055, three_loss: 0.0937, four_loss: 0.0899, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:12:20,631 CLIP2ReID.train INFO: Epoch[51] Iteration[400/423] Loss: 3.5012, itc_loss: 0.0000, one_loss: 3.2074, two_loss: 0.1071, three_loss: 0.0953, four_loss: 0.0914, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:12:37,281 CLIP2ReID.train INFO: Epoch 51 done. Time per batch: 0.722[s] Speed: 88.6[samples/s]
+2025-12-31 18:12:37,281 CLIP2ReID.train INFO: Validation Results - Epoch: 51
+2025-12-31 18:36:32,578 CLIP2ReID.train INFO: Epoch[52] Iteration[100/423] Loss: 3.4904, itc_loss: 0.0000, one_loss: 3.2052, two_loss: 0.1042, three_loss: 0.0924, four_loss: 0.0886, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:37:44,521 CLIP2ReID.train INFO: Epoch[52] Iteration[200/423] Loss: 3.4992, itc_loss: 0.0000, one_loss: 3.2071, two_loss: 0.1066, three_loss: 0.0947, four_loss: 0.0909, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:38:56,229 CLIP2ReID.train INFO: Epoch[52] Iteration[300/423] Loss: 3.4987, itc_loss: 0.0000, one_loss: 3.2069, two_loss: 0.1064, three_loss: 0.0946, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:40:08,162 CLIP2ReID.train INFO: Epoch[52] Iteration[400/423] Loss: 3.4960, itc_loss: 0.0000, one_loss: 3.2063, two_loss: 0.1057, three_loss: 0.0939, four_loss: 0.0901, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 18:40:24,794 CLIP2ReID.train INFO: Epoch 52 done. Time per batch: 0.725[s] Speed: 88.2[samples/s]
+2025-12-31 18:40:24,794 CLIP2ReID.train INFO: Validation Results - Epoch: 52
+2025-12-31 19:04:16,330 CLIP2ReID.train INFO: Epoch[53] Iteration[100/423] Loss: 3.4855, itc_loss: 0.0000, one_loss: 3.2040, two_loss: 0.1029, three_loss: 0.0912, four_loss: 0.0874, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:05:27,687 CLIP2ReID.train INFO: Epoch[53] Iteration[200/423] Loss: 3.4871, itc_loss: 0.0000, one_loss: 3.2046, two_loss: 0.1034, three_loss: 0.0915, four_loss: 0.0876, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:06:39,212 CLIP2ReID.train INFO: Epoch[53] Iteration[300/423] Loss: 3.4884, itc_loss: 0.0000, one_loss: 3.2048, two_loss: 0.1037, three_loss: 0.0919, four_loss: 0.0880, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:07:50,306 CLIP2ReID.train INFO: Epoch[53] Iteration[400/423] Loss: 3.4906, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1043, three_loss: 0.0924, four_loss: 0.0885, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:08:06,701 CLIP2ReID.train INFO: Epoch 53 done. Time per batch: 0.720[s] Speed: 88.9[samples/s]
+2025-12-31 19:08:06,701 CLIP2ReID.train INFO: Validation Results - Epoch: 53
+2025-12-31 19:31:20,976 CLIP2ReID.train INFO: Epoch[54] Iteration[100/423] Loss: 3.5052, itc_loss: 0.0000, one_loss: 3.2081, two_loss: 0.1081, three_loss: 0.0964, four_loss: 0.0926, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:32:32,049 CLIP2ReID.train INFO: Epoch[54] Iteration[200/423] Loss: 3.5018, itc_loss: 0.0000, one_loss: 3.2077, two_loss: 0.1074, three_loss: 0.0953, four_loss: 0.0914, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:33:43,025 CLIP2ReID.train INFO: Epoch[54] Iteration[300/423] Loss: 3.4994, itc_loss: 0.0000, one_loss: 3.2072, two_loss: 0.1067, three_loss: 0.0947, four_loss: 0.0908, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:34:53,997 CLIP2ReID.train INFO: Epoch[54] Iteration[400/423] Loss: 3.4938, itc_loss: 0.0000, one_loss: 3.2059, two_loss: 0.1052, three_loss: 0.0933, four_loss: 0.0895, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:35:10,402 CLIP2ReID.train INFO: Epoch 54 done. Time per batch: 0.717[s] Speed: 89.3[samples/s]
+2025-12-31 19:35:10,402 CLIP2ReID.train INFO: Validation Results - Epoch: 54
+2025-12-31 19:57:20,156 CLIP2ReID.train INFO: Epoch[55] Iteration[100/423] Loss: 3.4918, itc_loss: 0.0000, one_loss: 3.2054, two_loss: 0.1046, three_loss: 0.0929, four_loss: 0.0890, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:58:30,703 CLIP2ReID.train INFO: Epoch[55] Iteration[200/423] Loss: 3.4911, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1045, three_loss: 0.0926, four_loss: 0.0887, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 19:59:41,244 CLIP2ReID.train INFO: Epoch[55] Iteration[300/423] Loss: 3.4931, itc_loss: 0.0000, one_loss: 3.2058, two_loss: 0.1050, three_loss: 0.0931, four_loss: 0.0891, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:00:51,901 CLIP2ReID.train INFO: Epoch[55] Iteration[400/423] Loss: 3.4858, itc_loss: 0.0000, one_loss: 3.2044, two_loss: 0.1031, three_loss: 0.0911, four_loss: 0.0872, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:01:08,212 CLIP2ReID.train INFO: Epoch 55 done. Time per batch: 0.714[s] Speed: 89.7[samples/s]
+2025-12-31 20:01:08,212 CLIP2ReID.train INFO: Validation Results - Epoch: 55
+2025-12-31 20:23:16,336 CLIP2ReID.train INFO: Epoch[56] Iteration[100/423] Loss: 3.4983, itc_loss: 0.0000, one_loss: 3.2065, two_loss: 0.1062, three_loss: 0.0947, four_loss: 0.0909, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:24:26,776 CLIP2ReID.train INFO: Epoch[56] Iteration[200/423] Loss: 3.4988, itc_loss: 0.0000, one_loss: 3.2068, two_loss: 0.1064, three_loss: 0.0947, four_loss: 0.0909, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:25:37,263 CLIP2ReID.train INFO: Epoch[56] Iteration[300/423] Loss: 3.4972, itc_loss: 0.0000, one_loss: 3.2065, two_loss: 0.1060, three_loss: 0.0943, four_loss: 0.0904, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:26:47,621 CLIP2ReID.train INFO: Epoch[56] Iteration[400/423] Loss: 3.5038, itc_loss: 0.0000, one_loss: 3.2079, two_loss: 0.1078, three_loss: 0.0960, four_loss: 0.0921, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:27:03,927 CLIP2ReID.train INFO: Epoch 56 done. Time per batch: 0.711[s] Speed: 90.0[samples/s]
+2025-12-31 20:27:03,927 CLIP2ReID.train INFO: Validation Results - Epoch: 56
+2025-12-31 20:49:17,701 CLIP2ReID.train INFO: Epoch[57] Iteration[100/423] Loss: 3.4811, itc_loss: 0.0000, one_loss: 3.2031, two_loss: 0.1017, three_loss: 0.0901, four_loss: 0.0863, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:50:27,954 CLIP2ReID.train INFO: Epoch[57] Iteration[200/423] Loss: 3.4855, itc_loss: 0.0000, one_loss: 3.2041, two_loss: 0.1029, three_loss: 0.0912, four_loss: 0.0873, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:51:38,771 CLIP2ReID.train INFO: Epoch[57] Iteration[300/423] Loss: 3.4853, itc_loss: 0.0000, one_loss: 3.2041, two_loss: 0.1028, three_loss: 0.0911, four_loss: 0.0873, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:52:49,329 CLIP2ReID.train INFO: Epoch[57] Iteration[400/423] Loss: 3.4898, itc_loss: 0.0000, one_loss: 3.2050, two_loss: 0.1040, three_loss: 0.0923, four_loss: 0.0885, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 20:53:05,636 CLIP2ReID.train INFO: Epoch 57 done. Time per batch: 0.712[s] Speed: 89.9[samples/s]
+2025-12-31 20:53:05,636 CLIP2ReID.train INFO: Validation Results - Epoch: 57
+2025-12-31 21:15:04,286 CLIP2ReID.train INFO: Epoch[58] Iteration[100/423] Loss: 3.4903, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1043, three_loss: 0.0923, four_loss: 0.0884, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:16:14,910 CLIP2ReID.train INFO: Epoch[58] Iteration[200/423] Loss: 3.4765, itc_loss: 0.0000, one_loss: 3.2025, two_loss: 0.1005, three_loss: 0.0887, four_loss: 0.0848, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:17:25,599 CLIP2ReID.train INFO: Epoch[58] Iteration[300/423] Loss: 3.4864, itc_loss: 0.0000, one_loss: 3.2043, two_loss: 0.1031, three_loss: 0.0914, four_loss: 0.0876, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:18:36,269 CLIP2ReID.train INFO: Epoch[58] Iteration[400/423] Loss: 3.4853, itc_loss: 0.0000, one_loss: 3.2040, two_loss: 0.1028, three_loss: 0.0911, four_loss: 0.0874, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:18:52,576 CLIP2ReID.train INFO: Epoch 58 done. Time per batch: 0.713[s] Speed: 89.7[samples/s]
+2025-12-31 21:18:52,576 CLIP2ReID.train INFO: Validation Results - Epoch: 58
+2025-12-31 21:40:44,133 CLIP2ReID.train INFO: Epoch[59] Iteration[100/423] Loss: 3.4968, itc_loss: 0.0000, one_loss: 3.2065, two_loss: 0.1060, three_loss: 0.0941, four_loss: 0.0902, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:41:54,294 CLIP2ReID.train INFO: Epoch[59] Iteration[200/423] Loss: 3.4921, itc_loss: 0.0000, one_loss: 3.2054, two_loss: 0.1046, three_loss: 0.0930, four_loss: 0.0892, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:43:04,505 CLIP2ReID.train INFO: Epoch[59] Iteration[300/423] Loss: 3.4921, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1046, three_loss: 0.0930, four_loss: 0.0892, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:44:14,457 CLIP2ReID.train INFO: Epoch[59] Iteration[400/423] Loss: 3.4916, itc_loss: 0.0000, one_loss: 3.2053, two_loss: 0.1045, three_loss: 0.0928, four_loss: 0.0890, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 21:44:30,598 CLIP2ReID.train INFO: Epoch 59 done. Time per batch: 0.708[s] Speed: 90.4[samples/s]
+2025-12-31 21:44:30,599 CLIP2ReID.train INFO: Validation Results - Epoch: 59
+2025-12-31 22:06:16,455 CLIP2ReID.train INFO: Epoch[60] Iteration[100/423] Loss: 3.4796, itc_loss: 0.0000, one_loss: 3.2029, two_loss: 0.1013, three_loss: 0.0896, four_loss: 0.0858, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 22:07:26,830 CLIP2ReID.train INFO: Epoch[60] Iteration[200/423] Loss: 3.4880, itc_loss: 0.0000, one_loss: 3.2044, two_loss: 0.1034, three_loss: 0.0920, four_loss: 0.0882, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 22:08:37,305 CLIP2ReID.train INFO: Epoch[60] Iteration[300/423] Loss: 3.4868, itc_loss: 0.0000, one_loss: 3.2044, two_loss: 0.1032, three_loss: 0.0915, four_loss: 0.0877, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 22:09:48,184 CLIP2ReID.train INFO: Epoch[60] Iteration[400/423] Loss: 3.4895, itc_loss: 0.0000, one_loss: 3.2049, two_loss: 0.1040, three_loss: 0.0922, four_loss: 0.0884, Acc: 0.000, Base Lr: 1.00e-07
+2025-12-31 22:10:04,474 CLIP2ReID.train INFO: Epoch 60 done. Time per batch: 0.712[s] Speed: 89.9[samples/s]
+2025-12-31 22:10:04,474 CLIP2ReID.train INFO: Validation Results - Epoch: 60
+2025-12-31 22:30:42,287 CLIP2ReID.train INFO: best R1: 74.4998779296875 at epoch 15
+2025-12-31 22:30:42,287 CLIP2ReID.train INFO: best mAP: 62.03367614746094 at epoch 9

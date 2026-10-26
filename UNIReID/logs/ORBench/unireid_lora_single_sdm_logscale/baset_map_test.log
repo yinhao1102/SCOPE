@@ -1,0 +1,87 @@
+2026-03-06 10:04:05,341 CLIP2ReID INFO: {'MCM': False, 'MCQ': False, 'MCQMLM': False, 'MLM': False, 'MSM': False, 'MSMMLM': False, 'add_lora': True, 'al': 1.0, 'alpha': 0.9, 'batch_size': 64, 'beta': 0.999, 'bias_lr_factor': 2.0, 'cmm_loss_weight': 1.0, 'cmt_depth': 4, 'dataset_name': 'ORBench', 'distributed': False, 'eval_period': 1, 'focal_three_fusion_loss': False, 'focal_three_fusion_loss2': False, 'focal_three_fusion_loss3': False, 'focal_three_fusion_loss4': False, 'focal_three_fusion_loss5': False, 'focal_three_fusion_loss6': False, 'focalthree_four_fusion_loss': False, 'focalthree_fusion_loss': False, 'four_fusion_loss': False, 'freeze_vision_encoder': False, 'fusion_way': 'add', 'ga': 2.0, 'gamma': 0.1, 'id_loss_weight': 1.0, 'img_aug': False, 'img_size': (384, 128), 'klp': 1.0, 'label_mix': False, 'learnable_loss_weight': False, 'local_rank': 0, 'log_dir': 'logs', 'log_period': 100, 'lora_layers': 12, 'lora_mode': 'all', 'lora_r': 4, 'loss_names': 'sdm', 'lr': 1e-05, 'lr_factor': 5.0, 'lrscheduler': 'step', 'masked_token_rate': 0.8, 'masked_token_unchanged_rate': 0.1, 'mcm_loss_weight': 1.0, 'mcq_loss_weight': 1.0, 'milestones': (20, 50), 'mlm_loss_weight': 1.0, 'mmt_depth': 1, 'momentum': 0.9, 'name': 'baseline', 'nlp_aug': False, 'num_colors': 60, 'num_epoch': 60, 'num_instance': 4, 'num_loras': 4, 'num_workers': 8, 'only_fusion_loss': False, 'only_sketch': False, 'only_text': False, 'optimizer': 'Adam', 'output_dir': './logs/ORBench/20260304_105200_baseline', 'pa': 0.1, 'power': 0.9, 'pretrain_choice': 'ViT-B/16', 'resume': False, 'resume_ckpt_file': '', 'root_dir': '/home/yinhao/data', 'sampler': 'random', 'scaling': 1.0, 'stride_size': 16, 'target_lr': 1e-08, 'temperature': 0.07, 'test_batch_size': 512, 'test_setting': 0, 'text_length': 77, 'training': False, 'use_imageid': False, 'val_dataset': 'test', 'vocab_size': 49408, 'warmup_epochs': 5, 'warmup_factor': 0.1, 'warmup_method': 'linear', 'weight_decay': 4e-05, 'weight_decay_bias': 0.0}
+Random Sampling Processing...
+Random Sampling Completed!
+Training Model with ['sdm'] tasks
+2026-03-06 10:04:10,414 CLIP2ReID.model INFO: Load pretrained ViT-B/16 CLIP model with model config: {'embed_dim': 512, 'image_resolution': (384, 128), 'vision_layers': 12, 'vision_width': 768, 'vision_patch_size': 16, 'context_length': 77, 'vocab_size': 49408, 'transformer_width': 512, 'transformer_heads': 8, 'transformer_layers': 12, 'stride_size': 16}
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+LoRA Mode:all
+Pretrained Multimodal Encoder with LoRAs Loaded, with LoRA_r=4, LoRA_layers=12
+One Modality Evaluating...
+NIR: R1=42.082, R5=57.784, R10=64.451, mAP=33.331, mINP=8.976
+CP: R1=78.222, R5=88.431, R10=92.222, mAP=63.736, mINP=24.223
+SK: R1=60.667, R5=75.264, R10=80.972, mAP=48.284, mINP=14.817
+TEXT: R1=53.956, R5=68.227, R10=74.587, mAP=44.418, mINP=12.506
+
+Two Modalities Evaluating...
+NIR+CP: R1=89.583, R5=96.269, R10=97.880, mAP=74.897, mINP=27.565
+CP+NIR: R1=88.403, R5=95.583, R10=97.444, mAP=72.820, mINP=28.103
+NIR+SK: R1=79.022, R5=90.014, R10=93.458, mAP=63.637, mINP=19.475
+SK+NIR: R1=77.431, R5=89.639, R10=93.333, mAP=61.721, mINP=19.739
+NIR+TEXT: R1=73.343, R5=86.667, R10=90.839, mAP=59.035, mINP=17.942
+TEXT+NIR: R1=76.759, R5=88.427, R10=92.094, mAP=62.628, mINP=18.091
+CP+SK: R1=79.931, R5=89.778, R10=93.208, mAP=64.925, mINP=24.139
+SK+CP: R1=79.792, R5=89.931, R10=93.208, mAP=64.921, mINP=23.987
+CP+TEXT: R1=79.792, R5=90.653, R10=93.889, mAP=64.660, mINP=24.087
+TEXT+CP: R1=86.371, R5=93.789, R10=96.050, mAP=73.213, mINP=26.113
+SK+TEXT: R1=72.750, R5=85.236, R10=89.472, mAP=58.531, mINP=19.612
+TEXT+SK: R1=80.454, R5=90.704, R10=93.668, mAP=67.677, mINP=21.498
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=91.300, R5=97.228, R10=98.504, mAP=76.269, mINP=28.425
+CP+NIR+SK: R1=89.931, R5=96.528, R10=97.986, mAP=73.875, mINP=28.317
+SK+NIR+CP: R1=89.028, R5=96.486, R10=98.208, mAP=73.669, mINP=28.053
+NIR+CP+TEXT: R1=91.760, R5=97.400, R10=98.705, mAP=76.897, mINP=28.900
+CP+NIR+TEXT: R1=90.097, R5=96.444, R10=98.153, mAP=74.439, mINP=29.057
+TEXT+NIR+CP: R1=93.335, R5=97.945, R10=99.025, mAP=80.212, mINP=29.296
+NIR+SK+TEXT: R1=87.741, R5=95.808, R10=97.669, mAP=72.206, mINP=24.347
+SK+NIR+TEXT: R1=86.389, R5=95.014, R10=97.111, mAP=69.661, mINP=24.268
+TEXT+NIR+SK: R1=90.100, R5=96.548, R10=98.105, mAP=75.635, mINP=24.582
+CP+SK+TEXT: R1=82.625, R5=92.500, R10=95.264, mAP=67.471, mINP=25.261
+SK+CP+TEXT: R1=82.889, R5=92.639, R10=94.819, mAP=67.648, mINP=25.595
+TEXT+CP+SK: R1=88.997, R5=95.607, R10=97.241, mAP=76.109, mINP=27.920
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=92.719, R5=97.583, R10=98.743, mAP=77.994, mINP=29.769
+CP+NIR+SK+TEXT: R1=91.153, R5=97.361, R10=98.639, mAP=75.196, mINP=29.337
+SK+NIR+CP+TEXT: R1=91.264, R5=97.139, R10=98.458, mAP=75.239, mINP=29.212
+TEXT+NIR+CP+SK: R1=94.183, R5=98.349, R10=99.152, mAP=81.369, mINP=30.449
++----------------+--------+--------+--------+--------+--------+
+|      task      |   R1   |   R5   |  R10   |  mAP   |  mINP  |
++----------------+--------+--------+--------+--------+--------+
+|      NIR       | 42.082 | 57.784 | 64.451 | 33.331 | 8.976  |
+|       CP       | 78.222 | 88.431 | 92.222 | 63.736 | 24.223 |
+|       SK       | 60.667 | 75.264 | 80.972 | 48.284 | 14.817 |
+|      TEXT      | 53.956 | 68.227 | 74.587 | 44.418 | 12.506 |
+|     NIR+CP     | 89.583 | 96.269 | 97.880 | 74.897 | 27.565 |
+|     CP+NIR     | 88.403 | 95.583 | 97.444 | 72.820 | 28.103 |
+|     NIR+SK     | 79.022 | 90.014 | 93.458 | 63.637 | 19.475 |
+|     SK+NIR     | 77.431 | 89.639 | 93.333 | 61.721 | 19.739 |
+|    NIR+TEXT    | 73.343 | 86.667 | 90.839 | 59.035 | 17.942 |
+|    TEXT+NIR    | 76.759 | 88.427 | 92.094 | 62.628 | 18.091 |
+|     CP+SK      | 79.931 | 89.778 | 93.208 | 64.925 | 24.139 |
+|     SK+CP      | 79.792 | 89.931 | 93.208 | 64.921 | 23.987 |
+|    CP+TEXT     | 79.792 | 90.653 | 93.889 | 64.660 | 24.087 |
+|    TEXT+CP     | 86.371 | 93.789 | 96.050 | 73.213 | 26.113 |
+|    SK+TEXT     | 72.750 | 85.236 | 89.472 | 58.531 | 19.612 |
+|    TEXT+SK     | 80.454 | 90.704 | 93.668 | 67.677 | 21.498 |
+|   NIR+CP+SK    | 91.300 | 97.228 | 98.504 | 76.269 | 28.425 |
+|   CP+NIR+SK    | 89.931 | 96.528 | 97.986 | 73.875 | 28.317 |
+|   SK+NIR+CP    | 89.028 | 96.486 | 98.208 | 73.669 | 28.053 |
+|  NIR+CP+TEXT   | 91.760 | 97.400 | 98.705 | 76.897 | 28.900 |
+|  CP+NIR+TEXT   | 90.097 | 96.444 | 98.153 | 74.439 | 29.057 |
+|  TEXT+NIR+CP   | 93.335 | 97.945 | 99.025 | 80.212 | 29.296 |
+|  NIR+SK+TEXT   | 87.741 | 95.808 | 97.669 | 72.206 | 24.347 |
+|  SK+NIR+TEXT   | 86.389 | 95.014 | 97.111 | 69.661 | 24.268 |
+|  TEXT+NIR+SK   | 90.100 | 96.548 | 98.105 | 75.635 | 24.582 |
+|   CP+SK+TEXT   | 82.625 | 92.500 | 95.264 | 67.471 | 25.261 |
+|   SK+CP+TEXT   | 82.889 | 92.639 | 94.819 | 67.648 | 25.595 |
+|   TEXT+CP+SK   | 88.997 | 95.607 | 97.241 | 76.109 | 27.920 |
+| NIR+CP+SK+TEXT | 92.719 | 97.583 | 98.743 | 77.994 | 29.769 |
+| CP+NIR+SK+TEXT | 91.153 | 97.361 | 98.639 | 75.196 | 29.337 |
+| SK+NIR+CP+TEXT | 91.264 | 97.139 | 98.458 | 75.239 | 29.212 |
+| TEXT+NIR+CP+SK | 94.183 | 98.349 | 99.152 | 81.369 | 30.449 |
+|    ONE_AVER    | 58.732 | 72.426 | 78.058 | 47.442 | 15.130 |
+|    TWO_AVER    | 80.302 | 90.557 | 93.712 | 65.722 | 22.529 |
+|   THREE_AVER   | 88.683 | 95.846 | 97.566 | 73.674 | 27.002 |
+|   FOUR_AVER    | 92.330 | 97.608 | 98.748 | 77.450 | 29.692 |
++----------------+--------+--------+--------+--------+--------+

@@ -1,0 +1,14 @@
+**.pth
+**.pt
+
+data/*
+!data/bpe_simple_vocab_16e6.txt.gz
+outputs/
+
+**/archive/
+
+**.out
+**/__pycache__/
+
+.vscode/
+.pycharm/

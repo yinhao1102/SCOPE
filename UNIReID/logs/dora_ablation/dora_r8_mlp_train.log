@@ -1,0 +1,116 @@
+./logs/ORBench/20260722_001009_dora_r8_mlp is not exists, create given directory
+2026-07-22 00:10:09,641 UNIReid_lora INFO: Using 1 GPUs
+2026-07-22 00:10:09,641 UNIReid_lora INFO: Namespace(local_rank=0
+ name='dora_r8_mlp'
+ log_dir='logs'
+ output_dir='./logs/ORBench/20260722_001009_dora_r8_mlp'
+ log_period=100
+ eval_period=1
+ val_dataset='test'
+ resume=False
+ resume_ckpt_file=''
+ pretrain_choice='ViT-B/16'
+ temperature=0.07
+ img_aug=False
+ nlp_aug=False
+ add_lora=True
+ text_add_lora=False
+ freeze_vision_encoder=False
+ lora_r=4
+ scaling=1.0
+ num_loras=4
+ text_num_loras=1
+ lora_layers=12
+ text_lora_layers=2
+ lora_mode='mlp'
+ lora_r1=8
+ lora_r2=8
+ mmt_depth=1
+ num_colors=60
+ cmt_depth=4
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ lr_factor=5.0
+ use_imageid=False
+ MCQ=False
+ MCM=False
+ MLM=False
+ MSM=False
+ MCQMLM=False
+ MSMMLM=False
+ loss_names='itc'
+ cmm_loss_weight=1.0
+ mcm_loss_weight=1.0
+ mlm_loss_weight=1.0
+ mcq_loss_weight=1.0
+ id_loss_weight=1.0
+ vib_beta=0.001
+ single_itc_loss_weight=1.0
+ mm_itc_loss_weight=1.0
+ adapter_kl_loss_weight=0.1
+ img_size=(384
+ 128)
+ stride_size=16
+ text_length=77
+ vocab_size=49408
+ learnable_loss_weight=False
+ label_mix=False
+ optimizer='Adam'
+ lr=1e-05
+ bias_lr_factor=2.0
+ momentum=0.9
+ weight_decay=4e-05
+ weight_decay_bias=0.0
+ alpha=0.9
+ beta=0.999
+ num_epoch=60
+ milestones=[20
+ 50]
+ gamma=0.1
+ warmup_factor=0.1
+ warmup_epochs=5
+ warmup_method='linear'
+ lrscheduler='step'
+ target_lr=1e-08
+ power=0.9
+ dataset_name='ORBench'
+ sampler='random'
+ num_instance=4
+ root_dir='/home/yinhao/data'
+ batch_size=64
+ test_batch_size=450
+ num_workers=8
+ training=True
+ test_setting=0
+ fusion_way='vib'
+ use_weight=True
+ adapter_temperature=0.5
+ distributed=False)
+Random Sampling Processing...
+Random Sampling Completed!
+Training Model with ['itc'] tasks
+/home/yinhao/UNIReID/model/clip_model.py:573: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(model_path, map_location="cpu")
+DoRA mode: mlp, rank: 8, alpha: 1.0
+Pretrained multimodal encoder with modality-specific DoRA loaded, rank=8, layers=12
+Total params: 154972161 (154.972 M)
+Trainable params: 6526465 (6.526 M)
+Trainable ratio: 4.2114%
+Using 5.0 times learning rate for random init module 
+Epoch[1] Iteration[100/423] Loss: 6.6887, ctwo_mmitc_loss: 0.0000, cthree_mmitc_loss: 0.0000, cfour_mmitc_loss: 0.0000, Acc: 0.000, Base Lr: 1.00e-06  nir_itc_loss: 2.5879, cp_itc_loss: 1.0547, sk_itc_loss: 1.5938, txt_itc_loss: 1.4434  ctwo_adapter_kl_loss: 0.0000, cthree_adapter_kl_loss: 0.0000, cfour_adapter_kl_loss: 0.0000
+Epoch[1] Iteration[200/423] Loss: 6.5835, ctwo_mmitc_loss: 0.0000, cthree_mmitc_loss: 0.0000, cfour_mmitc_loss: 0.0000, Acc: 0.000, Base Lr: 1.00e-06  nir_itc_loss: 2.5508, cp_itc_loss: 1.0273, sk_itc_loss: 1.5684, txt_itc_loss: 1.4336  ctwo_adapter_kl_loss: 0.0000, cthree_adapter_kl_loss: 0.0000, cfour_adapter_kl_loss: 0.0000
+Epoch[1] Iteration[300/423] Loss: 6.5163, ctwo_mmitc_loss: 0.0000, cthree_mmitc_loss: 0.0000, cfour_mmitc_loss: 0.0000, Acc: 0.000, Base Lr: 1.00e-06  nir_itc_loss: 2.5293, cp_itc_loss: 1.0107, sk_itc_loss: 1.5566, txt_itc_loss: 1.4238  ctwo_adapter_kl_loss: 0.0000, cthree_adapter_kl_loss: 0.0000, cfour_adapter_kl_loss: 0.0000
+Epoch[1] Iteration[400/423] Loss: 6.4337, ctwo_mmitc_loss: 0.0000, cthree_mmitc_loss: 0.0000, cfour_mmitc_loss: 0.0000, Acc: 0.000, Base Lr: 1.00e-06  nir_itc_loss: 2.5020, cp_itc_loss: 0.9956, sk_itc_loss: 1.5400, txt_itc_loss: 1.4141  ctwo_adapter_kl_loss: 0.0000, cthree_adapter_kl_loss: 0.0000, cfour_adapter_kl_loss: 0.0000
+One Modality Evaluating...
+NIR: R1=23.808, R5=34.619, R10=40.854, mAP=17.453, mINP=4.833
+CP: R1=73.472, R5=81.875, R10=85.181, mAP=52.953, mINP=11.664
+SK: R1=46.042, R5=59.542, R10=66.181, mAP=30.619, mINP=5.585
+TEXT: R1=70.382, R5=82.366, R10=86.609, mAP=51.481, mINP=10.004
+
+Two Modalities Evaluating...
+NIR+CP: R1=81.698, R5=89.890, R10=92.595, mAP=60.539, mINP=14.110
+CP+NIR: R1=77.944, R5=87.319, R10=90.847, mAP=56.906, mINP=15.065
+NIR+SK: R1=52.902, R5=67.060, R10=73.132, mAP=37.938, mINP=8.542
+SK+NIR: R1=50.694, R5=64.931, R10=71.097, mAP=36.250, mINP=8.845
+NIR+TEXT: R1=67.434, R5=80.969, R10=85.765, mAP=49.398, mINP=12.182
+TEXT+NIR: R1=71.972, R5=84.565, R10=88.781, mAP=53.944, mINP=12.538

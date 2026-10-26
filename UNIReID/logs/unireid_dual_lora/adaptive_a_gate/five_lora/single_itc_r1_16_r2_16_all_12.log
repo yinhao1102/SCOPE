@@ -1,0 +1,193 @@
+../../../mnt/18T/yinhao/results/logs/ORBench/20260317_110125_baseline is not exists, create given directory
+2026-03-17 11:01:25,748 UNIReid_lora INFO: Using 1 GPUs
+2026-03-17 11:01:25,748 UNIReid_lora INFO: Namespace(local_rank=0
+ name='baseline'
+ log_dir='logs'
+ output_dir='../../../mnt/18T/yinhao/results/logs/ORBench/20260317_110125_baseline'
+ log_period=100
+ eval_period=1
+ val_dataset='test'
+ resume=False
+ resume_ckpt_file=''
+ pretrain_choice='ViT-B/16'
+ temperature=0.07
+ img_aug=False
+ nlp_aug=False
+ add_lora=True
+ freeze_vision_encoder=False
+ lora_r=4
+ scaling=1.0
+ num_loras=4
+ text_num_loras=1
+ lora_layers=12
+ lora_mode='all'
+ lora_r1=16
+ lora_r2=16
+ mmt_depth=2
+ num_colors=60
+ cmt_depth=4
+ masked_token_rate=0.8
+ masked_token_unchanged_rate=0.1
+ lr_factor=5.0
+ use_imageid=False
+ MCQ=False
+ MCM=False
+ MLM=False
+ MSM=False
+ MCQMLM=False
+ MSMMLM=False
+ loss_names='itc'
+ cmm_loss_weight=1.0
+ mcm_loss_weight=1.0
+ mlm_loss_weight=1.0
+ mcq_loss_weight=1.0
+ id_loss_weight=1.0
+ img_size=(384
+ 128)
+ stride_size=16
+ text_length=77
+ vocab_size=49408
+ learnable_loss_weight=False
+ label_mix=False
+ optimizer='Adam'
+ lr=1e-05
+ bias_lr_factor=2.0
+ momentum=0.9
+ weight_decay=4e-05
+ weight_decay_bias=0.0
+ alpha=0.9
+ beta=0.999
+ num_epoch=60
+ milestones=(20
+ 50)
+ gamma=0.1
+ warmup_factor=0.1
+ warmup_epochs=5
+ warmup_method='linear'
+ lrscheduler='step'
+ target_lr=1e-08
+ power=0.9
+ dataset_name='ORBench'
+ sampler='random'
+ num_instance=4
+ root_dir='/home/yinhao/data'
+ batch_size=64
+ test_batch_size=450
+ num_workers=8
+ training=True
+ test_setting=0
+ fusion_way='add'
+ only_sketch=False
+ only_text=False
+ pa=0.1
+ only_fusion_loss=False
+ four_fusion_loss=False
+ focal_three_fusion_loss=False
+ focal_three_fusion_loss2=False
+ focal_three_fusion_loss3=False
+ focal_three_fusion_loss4=False
+ focal_three_fusion_loss5=False
+ focal_three_fusion_loss6=False
+ focalthree_fusion_loss=False
+ focalthree_four_fusion_loss=False
+ al=1.0
+ ga=2.0
+ klp=1.0
+ distributed=False)
+Random Sampling Processing...
+Random Sampling Completed!
+Training Model with ['itc'] tasks
+Resized position embedding from size:torch.Size([1, 197, 768]) to size: torch.Size([1, 193, 768]) with height:24 width: 8
+Dual LoRA Mode:all
+Pretrained Text Encoder with LoRAs Loaded, with LoRA_r1=16 Lora_r2=16, LoRA_layers=12
+Dual LoRA Mode: all
+Pretrained Multimodal Encoder with LoRAs Loaded, with LoRA_r1=16 Lora_r2=16, LoRA_layers=12
+Total params: 173858817 (173.859 M)
+Trainable params: 22267393 (22.267 M)
+Trainable ratio: 12.8077%
+Using 5.0 times learning rate for random init module 
+Epoch[1] Iteration[100/423] Loss: 15.8796, nir_itc_loss: 4.1384, cp_itc_loss: 3.7353, sk_itc_loss: 3.8340, txt_itc_loss: 4.1720, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[200/423] Loss: 15.8012, nir_itc_loss: 4.0881, cp_itc_loss: 3.7239, sk_itc_loss: 3.8198, txt_itc_loss: 4.1693, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[300/423] Loss: 15.7217, nir_itc_loss: 4.0513, cp_itc_loss: 3.7033, sk_itc_loss: 3.7993, txt_itc_loss: 4.1677, Acc: 0.000, Base Lr: 1.00e-06
+Epoch[1] Iteration[400/423] Loss: 15.6399, nir_itc_loss: 4.0137, cp_itc_loss: 3.6824, sk_itc_loss: 3.7793, txt_itc_loss: 4.1644, Acc: 0.000, Base Lr: 1.00e-06
+One Modality Evaluating...
+NIR: R1=3.146, R5=8.815, R10=13.659, mAP=1.370, mINP=0.458
+CP: R1=10.000, R5=21.417, R10=28.167, mAP=3.091, mINP=0.427
+SK: R1=4.403, R5=12.042, R10=17.667, mAP=1.807, mINP=0.395
+TEXT: R1=1.042, R5=3.402, R10=5.612, mAP=0.732, mINP=0.447
+
+Two Modalities Evaluating...
+NIR+CP: R1=7.847, R5=21.506, R10=30.110, mAP=2.698, mINP=0.534
+CP+NIR: R1=6.986, R5=18.903, R10=26.736, mAP=2.596, mINP=0.495
+NIR+SK: R1=4.767, R5=13.688, R10=20.911, mAP=1.846, mINP=0.497
+SK+NIR: R1=3.722, R5=11.806, R10=18.222, mAP=1.726, mINP=0.457
+NIR+TEXT: R1=3.079, R5=9.909, R10=15.204, mAP=1.441, mINP=0.460
+TEXT+NIR: R1=4.814, R5=12.476, R10=18.510, mAP=1.811, mINP=0.572
+CP+SK: R1=6.889, R5=17.111, R10=24.208, mAP=2.510, mINP=0.420
+SK+CP: R1=6.778, R5=16.292, R10=23.736, mAP=2.489, mINP=0.421
+CP+TEXT: R1=9.000, R5=20.111, R10=27.056, mAP=2.878, mINP=0.429
+TEXT+CP: R1=15.490, R5=32.283, R10=42.283, mAP=4.562, mINP=0.647
+SK+TEXT: R1=4.208, R5=12.208, R10=18.500, mAP=1.795, mINP=0.400
+TEXT+SK: R1=7.407, R5=20.449, R10=29.518, mAP=2.813, mINP=0.596
+
+Three Modalities Evaluating...
+NIR+CP+SK: R1=6.839, R5=19.233, R10=28.163, mAP=2.664, mINP=0.534
+CP+NIR+SK: R1=5.597, R5=16.194, R10=23.861, mAP=2.365, mINP=0.481
+SK+NIR+CP: R1=5.361, R5=15.806, R10=23.764, mAP=2.328, mINP=0.478
+NIR+CP+TEXT: R1=7.923, R5=21.506, R10=31.146, mAP=2.706, mINP=0.536
+CP+NIR+TEXT: R1=6.861, R5=18.833, R10=27.403, mAP=2.592, mINP=0.498
+TEXT+NIR+CP: R1=10.720, R5=27.496, R10=38.183, mAP=3.397, mINP=0.665
+NIR+SK+TEXT: R1=4.911, R5=14.446, R10=21.986, mAP=1.867, mINP=0.499
+SK+NIR+TEXT: R1=4.056, R5=12.639, R10=19.125, mAP=1.777, mINP=0.460
+TEXT+NIR+SK: R1=7.385, R5=19.335, R10=28.399, mAP=2.412, mINP=0.620
+CP+SK+TEXT: R1=6.792, R5=16.819, R10=23.681, mAP=2.509, mINP=0.426
+SK+CP+TEXT: R1=6.542, R5=17.139, R10=24.403, mAP=2.490, mINP=0.428
+TEXT+CP+SK: R1=11.618, R5=28.537, R10=38.848, mAP=4.003, mINP=0.647
+
+Four Modalities Evaluating...
+NIR+CP+SK+TEXT: R1=7.434, R5=19.463, R10=28.518, mAP=2.675, mINP=0.534
+CP+NIR+SK+TEXT: R1=5.236, R5=15.833, R10=24.222, mAP=2.318, mINP=0.475
+SK+NIR+CP+TEXT: R1=5.931, R5=16.833, R10=25.000, mAP=2.384, mINP=0.480
+TEXT+NIR+CP+SK: R1=9.518, R5=26.039, R10=36.753, mAP=3.359, mINP=0.668
++----------------+--------+--------+--------+-------+-------+
+|      task      |   R1   |   R5   |  R10   |  mAP  |  mINP |
++----------------+--------+--------+--------+-------+-------+
+|      NIR       | 3.146  | 8.815  | 13.659 | 1.370 | 0.458 |
+|       CP       | 10.000 | 21.417 | 28.167 | 3.091 | 0.427 |
+|       SK       | 4.403  | 12.042 | 17.667 | 1.807 | 0.395 |
+|      TEXT      | 1.042  | 3.402  | 5.612  | 0.732 | 0.447 |
+|     NIR+CP     | 7.847  | 21.506 | 30.110 | 2.698 | 0.534 |
+|     CP+NIR     | 6.986  | 18.903 | 26.736 | 2.596 | 0.495 |
+|     NIR+SK     | 4.767  | 13.688 | 20.911 | 1.846 | 0.497 |
+|     SK+NIR     | 3.722  | 11.806 | 18.222 | 1.726 | 0.457 |
+|    NIR+TEXT    | 3.079  | 9.909  | 15.204 | 1.441 | 0.460 |
+|    TEXT+NIR    | 4.814  | 12.476 | 18.510 | 1.811 | 0.572 |
+|     CP+SK      | 6.889  | 17.111 | 24.208 | 2.510 | 0.420 |
+|     SK+CP      | 6.778  | 16.292 | 23.736 | 2.489 | 0.421 |
+|    CP+TEXT     | 9.000  | 20.111 | 27.056 | 2.878 | 0.429 |
+|    TEXT+CP     | 15.490 | 32.283 | 42.283 | 4.562 | 0.647 |
+|    SK+TEXT     | 4.208  | 12.208 | 18.500 | 1.795 | 0.400 |
+|    TEXT+SK     | 7.407  | 20.449 | 29.518 | 2.813 | 0.596 |
+|   NIR+CP+SK    | 6.839  | 19.233 | 28.163 | 2.664 | 0.534 |
+|   CP+NIR+SK    | 5.597  | 16.194 | 23.861 | 2.365 | 0.481 |
+|   SK+NIR+CP    | 5.361  | 15.806 | 23.764 | 2.328 | 0.478 |
+|  NIR+CP+TEXT   | 7.923  | 21.506 | 31.146 | 2.706 | 0.536 |
+|  CP+NIR+TEXT   | 6.861  | 18.833 | 27.403 | 2.592 | 0.498 |
+|  TEXT+NIR+CP   | 10.720 | 27.496 | 38.183 | 3.397 | 0.665 |
+|  NIR+SK+TEXT   | 4.911  | 14.446 | 21.986 | 1.867 | 0.499 |
+|  SK+NIR+TEXT   | 4.056  | 12.639 | 19.125 | 1.777 | 0.460 |
+|  TEXT+NIR+SK   | 7.385  | 19.335 | 28.399 | 2.412 | 0.620 |
+|   CP+SK+TEXT   | 6.792  | 16.819 | 23.681 | 2.509 | 0.426 |
+|   SK+CP+TEXT   | 6.542  | 17.139 | 24.403 | 2.490 | 0.428 |
+|   TEXT+CP+SK   | 11.618 | 28.537 | 38.848 | 4.003 | 0.647 |
+| NIR+CP+SK+TEXT | 7.434  | 19.463 | 28.518 | 2.675 | 0.534 |
+| CP+NIR+SK+TEXT | 5.236  | 15.833 | 24.222 | 2.318 | 0.475 |
+| SK+NIR+CP+TEXT | 5.931  | 16.833 | 25.000 | 2.384 | 0.480 |
+| TEXT+NIR+CP+SK | 9.518  | 26.039 | 36.753 | 3.359 | 0.668 |
+|    ONE_AVER    | 4.648  | 11.419 | 16.276 | 1.750 | 0.432 |
+|    TWO_AVER    | 6.749  | 17.228 | 24.583 | 2.430 | 0.494 |
+|   THREE_AVER   | 7.050  | 18.999 | 27.413 | 2.593 | 0.523 |
+|   FOUR_AVER    | 7.030  | 19.542 | 28.623 | 2.684 | 0.539 |
++----------------+--------+--------+--------+-------+-------+
+Epoch[2] Iteration[100/423] Loss: 15.0669, nir_itc_loss: 3.7253, cp_itc_loss: 3.5465, sk_itc_loss: 3.6499, txt_itc_loss: 4.1453, Acc: 0.000, Base Lr: 2.80e-06
+Epoch[2] Iteration[200/423] Loss: 14.8760, nir_itc_loss: 3.6684, cp_itc_loss: 3.4893, sk_itc_loss: 3.5860, txt_itc_loss: 4.1323, Acc: 0.000, Base Lr: 2.

@@ -1,0 +1,6 @@
+method,config,backbone,image_size,text_length,batch_size,total_flops,tflops_per_batch,gflops_per_sample,total_params,trainable_params
+scope-stage1,/mnt/18T/yinhao/results/logs/ORBench/20260414_171241_baseline/configs.yaml,ViT-B/16,384x128,77,2,1089842226560,1.089842,544.921113,158574861,9291265
+scope-stage2,/mnt/18T/yinhao/results/logs/ORBench/20260414_171241_baseline/configs.yaml,ViT-B/16,384x128,77,2,460374875392,0.460375,230.187438,158574861,1231117
+unireid,/mnt/18T/yinhao/results/logs/ORBench/20260317_105038_baseline/configs.yaml,ViT-B/16,384x128,77,2,829223522304,0.829224,414.611761,149617665,149617665
+reid5o,/home/yinhao/ReID5o_ORBench/ReID5o/logs/reid5o_ckpt/configs.yaml,ViT-B/16,384x128,77,2,920517660672,0.920518,460.258830,159237208,81352792
+irra,/home/yinhao/IRRA/logs/CUHK-PEDES/20250729_160801_irra/configs.yaml,ViT-B/16,384x128,77,2,901305729024,0.901306,450.652865,189198680,189198680
