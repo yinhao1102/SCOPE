@@ -1,0 +1,5 @@
+_base_: defaults.yaml
+dataset_name: Tri-ICFG-PEDES
+output_dir: outputs/ham_icfg
+num_workers: 4
+visual_factor_lr_mult: 2.0

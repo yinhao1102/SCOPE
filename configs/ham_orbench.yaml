@@ -1,0 +1,3 @@
+_base_: defaults.yaml
+dataset_name: ORBench
+output_dir: outputs/ham_orbench

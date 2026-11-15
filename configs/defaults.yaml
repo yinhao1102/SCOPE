@@ -1,0 +1,47 @@
+dataset_name: ORBench
+root_dir: datasets
+pretrain_choice: pretrained/ham.pth
+output_dir: outputs/ham_orbench
+device: auto
+threads: 4
+seed: 2
+img_size: [384, 128]
+text_length: 77
+img_aug: false
+batch_size: 64
+test_batch_size: 128
+num_workers: 8
+fusion_workers: 4
+amp_dtype: bf16
+lora_r1: 8
+lora_r2: 8
+dual_lora_alpha: 1.0
+temperature: 0.07
+encoder_epochs: 60
+fusion_epochs: 35
+lr: 0.00001
+fusion_lr: 0.0001
+visual_factor_lr_mult: 1.0
+optimizer: Adam
+alpha: 0.9
+beta: 0.999
+momentum: 0.9
+weight_decay: 0.00004
+weight_decay_bias: 0.0
+bias_lr_factor: 2.0
+lr_factor: 1.0
+lrscheduler: step
+milestones: [30, 50]
+gamma: 0.5
+warmup_factor: 0.1
+warmup_epochs: 5
+warmup_method: linear
+target_lr: 0.00000001
+power: 0.9
+mca_weight: 1.5
+mca_bank_identities: 600
+mca_probe_batches: 16
+# Historical runs selected the best test Avg-mAP. For Tri, val is also supported.
+selection_split: test
+encoder_checkpoint: null
+fusion_checkpoint: null

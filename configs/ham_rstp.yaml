@@ -1,0 +1,4 @@
+_base_: defaults.yaml
+dataset_name: Tri-RSTPReid
+output_dir: outputs/ham_rstp
+num_workers: 4
