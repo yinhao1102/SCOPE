@@ -127,9 +127,15 @@ class TrainingPipelineTest(unittest.TestCase):
                     self.assertTrue(frozen["single_modal_metrics_unchanged"])
                     active = json.loads((output / "stage2/first_batch.json").read_text())["active_names"]
                     self.assertTrue(all(name.startswith("mm_") for name in active))
-                    stage1 = json.loads((output / "stage1/best.json").read_text())
+                    stage1 = json.loads((output / "stage1/transition.json").read_text())
                     stage2 = json.loads((output / "stage2/best.json").read_text())
                     self.assertEqual(stage1["per_group"]["ONE_AVER"], stage2["per_group"]["ONE_AVER"])
+                    transition = torch.load(output / "stage1/transition.pth", weights_only=True)
+                    fusion = torch.load(output / "stage2/mAP_best.pth", weights_only=True)
+                    self.assertEqual(transition["epoch"], 2)
+                    self.assertEqual(fusion["encoder_epoch"], 2)
+                    self.assertEqual(fusion["encoder_sha256"], transition["encoder_sha256"])
+                    self.assertEqual(fusion["global_epoch"], 2 + fusion["epoch"])
                     with patch("sys.argv", ["test.py", "--config", str(config), "--export-rankings", "--top-k", "3"]), contextlib.redirect_stdout(io.StringIO()):
                         evaluate_main()
                     evaluated = json.loads((output / "evaluation.json").read_text())
@@ -149,6 +155,87 @@ class TrainingPipelineTest(unittest.TestCase):
                             source = row["query_index"] if row["setting"] == "SK" else row["query_index"] // 2
                             filename = f"{row['query_pid']}_{source % 2}.png"
                             self.assertTrue(all(Path(hit["path"]).name != filename for hit in row["gallery"]))
+
+    def test_switch_uses_epoch_n_even_if_an_earlier_epoch_scores_better(self):
+        torch.set_num_threads(1)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            fixture(root / "datasets")
+            tiny_ham(root / "ham.pth")
+            output = root / "run"
+            config = root / "config.yaml"
+            config.write_text(yaml.safe_dump(dict(
+                dataset_name="Tri-RSTPReid", root_dir=str(root / "datasets"),
+                pretrain_choice=str(root / "ham.pth"), output_dir=str(output),
+                device="cpu", num_workers=0, fusion_workers=0, threads=1,
+                img_size=[32, 16], batch_size=3, test_batch_size=3,
+                encoder_epochs=9, fusion_epochs=2, mca_probe_batches=2,
+                mca_bank_identities=3, amp_dtype="none", selection_split="test",
+            )))
+            native_evaluate = DataBundle.evaluate
+            encoder_evaluations = 0
+
+            def earlier_epoch_scores_better(bundle, model, cache, fused=False):
+                nonlocal encoder_evaluations
+                result = native_evaluate(bundle, model, cache, fused)
+                if not fused:
+                    # Control only checkpoint-selection scores. Inputs, gradients,
+                    # per-query evaluation and stage-2 training remain real.
+                    encoder_evaluations += 1
+                    result["mean_mAP"] = 100.0 - encoder_evaluations
+                return result
+
+            command = ["train.py", "--config", str(config), "--switch-epoch", "2"]
+            with patch.object(DataBundle, "evaluate", earlier_epoch_scores_better), \
+                    patch("sys.argv", command), contextlib.redirect_stdout(io.StringIO()):
+                train_main()
+            best = torch.load(output / "stage1/mAP_best.pth", weights_only=True)
+            transition = torch.load(output / "stage1/transition.pth", weights_only=True)
+            fusion = torch.load(output / "stage2/mAP_best.pth", weights_only=True)
+            self.assertEqual(best["epoch"], 1)
+            self.assertEqual(transition["epoch"], 2)
+            self.assertGreater(best["metrics"]["mean_mAP"], transition["metrics"]["mean_mAP"])
+            self.assertTrue(any(not torch.equal(value, best["model"][name])
+                                for name, value in transition["model"].items()))
+            self.assertEqual(fusion["encoder_sha256"], transition["encoder_sha256"])
+            self.assertEqual(Path(fusion["encoder_checkpoint"]), output / "stage1/transition.pth")
+            completion = json.loads((output / "stage1/completed.json").read_text())
+            self.assertFalse(completion["best_checkpoint_reloaded"])
+
+            def evaluate(*options, destination=output):
+                with patch("sys.argv", ["test.py", "--config", str(config), "--output", str(destination), *options]), \
+                        contextlib.redirect_stdout(io.StringIO()):
+                    evaluate_main()
+                return json.loads((destination / "evaluation.json").read_text())
+
+            result = evaluate()
+            self.assertEqual(result["per_query"], fusion["metrics"]["per_query"])
+            mean_result = evaluate("--no-fusion")
+            self.assertEqual(mean_result["per_query"], transition["metrics"]["per_query"])
+            with self.assertRaisesRegex(ValueError, "different encoder"):
+                evaluate("--encoder-checkpoint", str(output / "stage1/mAP_best.pth"))
+
+            # A separate MSF run must use the requested epoch as well. Its
+            # evaluator resolves the recorded encoder outside its output folder.
+            separate = root / "fusion_only"
+            separate_command = command + ["--stage", "fusion", "--output", str(separate),
+                                           "--encoder-checkpoint", str(output / "stage1/transition.pth")]
+            with patch("sys.argv", separate_command), contextlib.redirect_stdout(io.StringIO()):
+                train_main()
+            separate_fusion = torch.load(separate / "stage2/mAP_best.pth", weights_only=True)
+            self.assertEqual(separate_fusion["encoder_sha256"], transition["encoder_sha256"])
+            self.assertEqual(evaluate(destination=separate)["per_query"], separate_fusion["metrics"]["per_query"])
+            with patch("sys.argv", command + ["--stage", "fusion", "--encoder-checkpoint",
+                                               str(output / "stage1/mAP_best.pth")]), \
+                    contextlib.redirect_stdout(io.StringIO()), \
+                    self.assertRaisesRegex(ValueError, "requires encoder epoch 2"):
+                train_main()
+
+    def test_switch_argument_keeps_encoder_epochs_alias_and_rejects_zero(self):
+        self.assertEqual(arguments(argv=["--switch-epoch", "21"]).encoder_epochs, 21)
+        self.assertEqual(arguments(argv=["--encoder-epochs", "21"]).encoder_epochs, 21)
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit):
+            arguments(argv=["--switch-epoch", "0"])
 
 
 if __name__ == "__main__":

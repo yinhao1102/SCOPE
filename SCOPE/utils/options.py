@@ -41,8 +41,9 @@ def arguments(evaluation=False, argv=None):
     parser.add_argument("--encoder-checkpoint")
     parser.add_argument("--fusion-checkpoint")
     parser.add_argument("--stage", choices=("all", "encoder", "fusion"), default="all")
-    parser.add_argument("--encoder-epochs", type=int)
-    parser.add_argument("--fusion-epochs", type=int)
+    parser.add_argument("--switch-epoch", "--encoder-epochs", dest="encoder_epochs", type=int,
+                        help="Complete N encoder epochs, then start stage 2 at global epoch N+1")
+    parser.add_argument("--fusion-epochs", type=int, help="Number of epochs after the stage switch")
     parser.add_argument("--selection-split", choices=("test", "val"))
     parser.add_argument("--split", choices=("test", "val"), default="test")
     parser.add_argument("--no-fusion", action="store_true")

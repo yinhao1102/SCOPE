@@ -101,10 +101,16 @@ def calibrate_mca(model, bundle, args, output):
     return bank, temperatures
 
 
-def load_encoder(model, checkpoint):
+def load_encoder(model, checkpoint, expected_epoch=None):
     state = torch.load(checkpoint, map_location="cpu", weights_only=True)
     if "model" not in state or state.get("format") == "msf_heads":
         raise ValueError("Expected an encoder checkpoint containing a model state dictionary")
+    if expected_epoch is not None and state.get("epoch") != expected_epoch:
+        raise ValueError(
+            f"Stage 2 requires encoder epoch {expected_epoch}, but the checkpoint records "
+            f"epoch {state.get('epoch')}. Set --switch-epoch to the intended boundary "
+            "and supply the checkpoint from that epoch."
+        )
     model.load_state_dict(state["model"], strict=True)
     return state
 
@@ -114,10 +120,13 @@ def checkpoint_payload(model, args, stage, metrics, encoder_checkpoint, fingerpr
         "model": {name: value.detach().cpu() for name, value in model.state_dict().items()}
         if stage == 1 else heads_state(model),
         "format": "full_encoder" if stage == 1 else "msf_heads",
-        "stage": stage, "epoch": metrics["epoch"], "metrics": metrics,
+        "stage": stage, "epoch": metrics["epoch"], "global_epoch": metrics["global_epoch"],
+        "metrics": metrics,
         "config": vars(args).copy(),
         "encoder_checkpoint": str(encoder_checkpoint) if encoder_checkpoint else None,
         "encoder_sha256": fingerprint,
+        "encoder_epoch": args.encoder_epochs if stage == 2 else metrics["epoch"],
+        "stage_transition": "fixed_epoch",
     }
 
 
@@ -133,7 +142,7 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
         model.zero_grad(set_to_none=True)
         model.requires_grad_(False)
         fingerprint = encoder_fingerprint(model)
-        # Extract once from the selected encoder before resetting the MSF
+        # Extract once from the fixed-epoch encoder before resetting the MSF
         # initialization and training RNG. Never reuse features from another run.
         for split in ("val", "test"):
             cache = bundle.cache(model, split)
@@ -147,6 +156,7 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
     configuration = dict(vars(args), stage=stage, stage_epochs=epochs,
                          objective="single SDM" if stage == 1 else "multimodal SDM + MCA",
                          selection_split=args.selection_split, strict_encoder_freeze=(stage == 2),
+                         stage_transition="fixed_epoch", transition_after_epoch=args.encoder_epochs,
                          encoder_checkpoint=str(encoder_checkpoint) if encoder_checkpoint else None)
     (output / "configs.yaml").write_text(yaml.safe_dump(configuration, sort_keys=True))
     write_json(output / "parameter_counts.json", {
@@ -160,6 +170,7 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
         raise ValueError("Training loader is empty; check the data and batch size")
     best_map = best_r1 = -float("inf")
     best = None
+    final_metrics = None
     single_baseline = {}
     for epoch in range(1, epochs + 1):
         if stage == 1:
@@ -214,6 +225,7 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
                 continue
             metrics = bundle.evaluate(model, cache, fused=(stage == 2))
             metrics.update(epoch=epoch, stage=stage, split=split, dataset=args.dataset_name,
+                           global_epoch=epoch + (args.encoder_epochs if stage == 2 else 0),
                            seed=args.seed, loss=total / len(loader), train_seconds=training_seconds,
                            checkpoint_selection_split=args.selection_split)
             with (output / f"metrics_{split}.jsonl").open("a") as stream:
@@ -227,6 +239,7 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
                     raise RuntimeError("Single-modal evaluation changed during frozen-encoder training")
             if split != args.selection_split:
                 continue
+            final_metrics = metrics
             payload = None
             if metrics["mean_mAP"] > best_map or metrics["mean_R1"] > best_r1:
                 payload = checkpoint_payload(
@@ -244,12 +257,25 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
             raise RuntimeError("No metrics were produced for the checkpoint selection split")
         write_json(output / "progress.json", {
             "completed_epochs": epoch, "best_epoch": best["epoch"], "best_mAP": best_map,
+            "global_epoch": epoch + (args.encoder_epochs if stage == 2 else 0),
+            "transition_after_epoch": args.encoder_epochs,
         })
-    selected = torch.load(output / "mAP_best.pth", map_location="cpu", weights_only=True)
     if stage == 1:
-        model.load_state_dict(selected["model"], strict=True)
-        cache = bundle.cache(model, args.selection_split)
+        # The handoff is the current encoder at epoch N, even when an earlier
+        # epoch had better retrieval scores. Never reload a best checkpoint here.
+        fingerprint = encoder_fingerprint(model)
+        transition_path = output / "transition.pth"
+        payload = checkpoint_payload(model, args, stage, final_metrics, None, fingerprint)
+        save_checkpoint(transition_path, payload)
+        write_metric_tables(output, "transition", final_metrics)
+        completion = {
+            "stage_transition": "fixed_epoch", "transition_after_epoch": epochs,
+            "transition_checkpoint": str(transition_path), "encoder_sha256": fingerprint,
+            "best_checkpoint_reloaded": False,
+        }
+        logging.info("Encoder epoch %d completed; stage 2 will use %s", epochs, transition_path)
     else:
+        selected = torch.load(output / "mAP_best.pth", map_location="cpu", weights_only=True)
         load_heads(model, selected)
         if encoder_fingerprint(model) != fingerprint:
             raise RuntimeError("Encoder parameters or buffers changed in stage two")
@@ -257,12 +283,13 @@ def train_stage(model, bundle, args, stage, encoder_checkpoint=None):
             "encoder_sha256": fingerprint, "single_modal_metrics_unchanged": True,
         })
         cache = caches[args.selection_split]
-    reloaded = bundle.evaluate(model, cache, fused=(stage == 2))
-    if abs(reloaded["mean_mAP"] - best["mean_mAP"]) > 1e-5:
-        raise RuntimeError("Best-checkpoint reload did not reproduce its metrics")
+        reloaded = bundle.evaluate(model, cache, fused=True)
+        if abs(reloaded["mean_mAP"] - best["mean_mAP"]) > 1e-5:
+            raise RuntimeError("Best-checkpoint reload did not reproduce its metrics")
+        completion = {"best_reload_verified": True, "encoder_epoch": args.encoder_epochs}
     write_metric_tables(output, "best", best)
     write_json(output / "completed.json", {
-        "status": "completed", "epochs": epochs, "best": best, "best_reload_verified": True,
+        "status": "completed", "epochs": epochs, "best": best, **completion,
     })
     return best
 
@@ -301,10 +328,10 @@ def train_main():
     encoder_checkpoint = getattr(args, "encoder_checkpoint", None)
     if args.stage != "fusion":
         train_stage(model, bundle, args, 1)
-        encoder_checkpoint = str(Path(args.output_dir) / "stage1/mAP_best.pth")
+        encoder_checkpoint = str(Path(args.output_dir) / "stage1/transition.pth")
     else:
-        encoder_checkpoint = encoder_checkpoint or str(Path(args.output_dir) / "stage1/mAP_best.pth")
-        load_encoder(model, encoder_checkpoint)
+        encoder_checkpoint = encoder_checkpoint or str(Path(args.output_dir) / "stage1/transition.pth")
+        load_encoder(model, encoder_checkpoint, expected_epoch=args.encoder_epochs)
     if args.stage == "fusion" or (args.stage == "all" and not args.no_fusion):
         train_stage(model, bundle, args, 2, encoder_checkpoint)
 
@@ -315,9 +342,6 @@ def evaluate_main():
     if prepared is None:
         return
     model, bundle = prepared
-    encoder_checkpoint = getattr(args, "encoder_checkpoint", None)
-    encoder_checkpoint = encoder_checkpoint or str(Path(args.output_dir) / "stage1/mAP_best.pth")
-    load_encoder(model, encoder_checkpoint)
     fusion_checkpoint = getattr(args, "fusion_checkpoint", None)
     if not fusion_checkpoint and not args.no_fusion:
         candidate = Path(args.output_dir) / "stage2/mAP_best.pth"
@@ -325,10 +349,19 @@ def evaluate_main():
             fusion_checkpoint = str(candidate)
     if fusion_checkpoint and args.no_fusion:
         raise ValueError("--fusion-checkpoint and --no-fusion cannot be combined")
+    state = (torch.load(fusion_checkpoint, map_location="cpu", weights_only=True)
+             if fusion_checkpoint else None)
+    encoder_checkpoint = getattr(args, "encoder_checkpoint", None)
+    if not encoder_checkpoint:
+        # Separate stage-2 runs record the exact encoder they used. After moving
+        # a complete run directory, fall back to its local transition checkpoint.
+        recorded = state.get("encoder_checkpoint") if state else None
+        encoder_checkpoint = (recorded if recorded and Path(recorded).is_file()
+                              else str(Path(args.output_dir) / "stage1/transition.pth"))
+    load_encoder(model, encoder_checkpoint)
     if fusion_checkpoint:
         fingerprint = encoder_fingerprint(model)
         attach_msf(model, bundle.active, args.seed)
-        state = torch.load(fusion_checkpoint, map_location="cpu", weights_only=True)
         if state.get("encoder_sha256") and state["encoder_sha256"] != fingerprint:
             raise ValueError("Fusion checkpoint belongs to a different encoder")
         load_heads(model, state)

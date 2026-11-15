@@ -70,9 +70,18 @@ CUDA_VISIBLE_DEVICES=0 bash run.sh train \
   --output outputs/ham_orbench
 ```
 
-The first stage trains the free-gate Dual-LoRA encoders and modality tokenizers with single-modal SDM alignment. It evaluates after every epoch and selects the best encoder by Avg-mAP. The second stage loads that encoder, freezes it, and trains only MSF with multimodal SDM + **1.5 MCA**. MCA targets and temperature calibration use training samples and a training RGB reference bank. The encoder remains in evaluation mode throughout the second stage.
+The first stage trains the free-gate Dual-LoRA encoders and modality tokenizers with single-modal SDM alignment. After exactly **N encoder epochs**, the current encoder is saved as `stage1/transition.pth` and frozen. Stage 2 then trains only MSF with multimodal SDM + **1.5 MCA**. The transition uses the weights at epoch N, regardless of which epoch has the highest retrieval score. MCA targets and temperature calibration use training samples and a training RGB reference bank. The encoder remains in evaluation mode throughout the second stage.
 
 The defaults use ranks 8 + 8, batch size 64, 60 encoder epochs, and 35 fusion epochs. YAML files expose the learning rates, epoch budgets, ranks, MCA weight, and other settings. CUDA training uses BF16 autocast; set `amp_dtype: none` in the configuration for FP32. Use a new output directory for each experiment; existing training histories are not overwritten.
+
+Set the boundary using `--switch-epoch N` (or `encoder_epochs: N` in YAML). For example, the following trains the encoder for epochs 1–21, then MSF for epochs 22–60:
+
+```bash
+bash run.sh train --config configs/ham_orbench.yaml \
+  --switch-epoch 21 --fusion-epochs 39
+```
+
+`--encoder-epochs` remains an alias for `--switch-epoch`. `--fusion-epochs` is the number of epochs **after** the switch, so the total budget is N plus `fusion_epochs`. Metrics include both the epoch within a stage and the global epoch. Evaluation still runs after every epoch and saves best checkpoints for reporting; these checkpoints do not determine the stage boundary or replace the encoder passed to MSF.
 
 | Dataset | Configuration | Query modalities |
 |---|---|---|
@@ -92,17 +101,20 @@ CUDA_VISIBLE_DEVICES=0 bash run.sh train \
 The stages can also be run separately:
 
 ```bash
-python train.py --config configs/ham_orbench.yaml --stage encoder
+python train.py --config configs/ham_orbench.yaml --stage encoder --switch-epoch 21
 
 python train.py --config configs/ham_orbench.yaml --stage fusion \
-  --encoder-checkpoint outputs/ham_orbench/stage1/mAP_best.pth
+  --switch-epoch 21 --fusion-epochs 39 \
+  --encoder-checkpoint outputs/ham_orbench/stage1/transition.pth
 ```
 
 Use `--rank 8`, `--mca-weight 1.5`, `--workers 4`, or `--batch-size 64` for common overrides. `--dry-run` prints the resolved configuration. `--mca-weight 0` trains MSF without MCA. These entry points start a new stage rather than resuming an interrupted optimizer state.
 
+A separate fusion run validates that the encoder checkpoint was saved at the specified switch epoch. Without an explicit checkpoint, it uses `stage1/transition.pth` in the output directory.
+
 ## Evaluation and outputs
 
-Evaluate the selected encoder and MSF checkpoints:
+Evaluate the fixed-epoch encoder and selected MSF checkpoint:
 
 ```bash
 bash run.sh test --config configs/ham_orbench.yaml \
@@ -110,7 +122,9 @@ bash run.sh test --config configs/ham_orbench.yaml \
   --output outputs/ham_orbench --export-rankings --top-k 10
 ```
 
-By default, evaluation loads `stage1/mAP_best.pth` and, when present, `stage2/mAP_best.pth` from the output directory. To evaluate another run, pass `--encoder-checkpoint` and `--fusion-checkpoint`. Use `--no-fusion` to evaluate the encoder with arithmetic mean fusion. MSF checkpoints are checked against their encoder fingerprint to prevent mixing stages from different runs.
+By default, evaluation loads `stage2/mAP_best.pth` when present and the exact encoder recorded by that MSF checkpoint. A complete run stores this encoder at `stage1/transition.pth`; this is also the default when evaluating without MSF. To evaluate another run, pass `--encoder-checkpoint` and `--fusion-checkpoint`. Use `--no-fusion` to evaluate the fixed-epoch encoder with arithmetic mean fusion. MSF checkpoints are checked against their encoder fingerprint to prevent mixing stages from different runs.
+
+The stage-1 `mAP_best.pth` and `R1_best.pth` files are retained for separate encoder comparisons. For example, use `--no-fusion --encoder-checkpoint outputs/ham_orbench/stage1/mAP_best.pth` to evaluate the best encoder alone; it is not automatically substituted into the two-stage model.
 
 For a custom training configuration, evaluate with the saved configuration so that ranks and preprocessing match:
 
@@ -128,6 +142,8 @@ outputs/ham_orbench/
 │   ├── configs.yaml
 │   ├── parameter_counts.json
 │   ├── metrics_test.jsonl
+│   ├── transition.pth              # encoder after exactly N epochs
+│   ├── transition.json             # metrics at that epoch
 │   ├── mAP_best.pth
 │   ├── R1_best.pth
 │   ├── best.json
@@ -149,8 +165,8 @@ Evaluation reports **R@1, R@5, R@10, mAP, and mINP** in percent for each query s
 
 - **ORBench:** all 32 native query settings are retained, including the annotation-specific modality orderings. Single-, dual-, tri-, and quad-modal groups contain 4, 12, 12, and 4 settings. Avg-mAP gives equal weight to the four group means.
 - **Tri datasets:** the primary TEXT, SK, and TEXT + SK evaluations exclude the query's paired source RGB image from the gallery. Single-modal metrics average TEXT and SK; dual-modal metrics use TEXT + SK. Checkpoint selection averages the three query mAP values. `TEXT_original` additionally reports text retrieval without source-image exclusion and is not included in this average.
-- Presets retain the experimental setting `selection_split: test`. These are best-test-selected results, not scores on an independently held-out test set. Where the Tri annotations provide a validation split, use `--selection-split val` for validation-based checkpoint selection, then `test.py --split test` for evaluation. ORBench's native annotations provide train/test only.
-- Every metric in a best-result table comes from the same selected checkpoint. During MSF training, single-modal scores remain fixed because the encoder is frozen. The best checkpoint is reloaded and its metrics verified at the end of each stage.
+- The stage transition is fixed in advance and does not use evaluation scores. `selection_split` only controls best-result reporting and best MSF checkpoint selection. Presets use `selection_split: test`, so best-result tables are test-selected rather than independently held-out scores. Where the Tri annotations provide a validation split, use `--selection-split val`, then `test.py --split test` for evaluation. ORBench's native annotations provide train/test only.
+- Every metric in a best-result table comes from the same selected checkpoint. During MSF training, single-modal scores equal those of the epoch-N encoder and remain fixed. At the end of stage 2, the best MSF checkpoint is reloaded and its metrics verified against the fixed encoder. Stage 1 additionally exports `transition_per_query.csv` and `transition_per_group.csv` for that encoder.
 
 ## Code structure
 
@@ -186,7 +202,7 @@ Run CPU integration checks without downloading data or pretrained weights:
 python -m unittest discover -s tests -v
 ```
 
-The tests generate temporary images and a tiny backbone. They exercise both training stages, best-checkpoint reload, frozen-encoder consistency, metric and ranking exports, the four dataset formats, and equivalence of cached ORBench evaluation to the native evaluator. They verify the pipeline, not benchmark performance.
+The tests generate temporary images and a tiny backbone. They exercise both training stages, the fixed-epoch transition even when an earlier epoch scores better, separate fusion runs, matching encoder/MSF checkpoints, frozen-encoder consistency, metric and ranking exports, the four dataset formats, and equivalence of cached ORBench evaluation to the native evaluator. They verify the pipeline, not benchmark performance.
 
 ## Acknowledgements
 

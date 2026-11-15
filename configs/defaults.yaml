@@ -17,6 +17,8 @@ lora_r1: 8
 lora_r2: 8
 dual_lora_alpha: 1.0
 temperature: 0.07
+# Fixed stage boundary: finish encoder epoch N, then freeze it for stage 2.
+# CLI: --switch-epoch N (alias: --encoder-epochs N).
 encoder_epochs: 60
 fusion_epochs: 35
 lr: 0.00001
@@ -41,7 +43,8 @@ power: 0.9
 mca_weight: 1.5
 mca_bank_identities: 600
 mca_probe_batches: 16
-# Historical runs selected the best test Avg-mAP. For Tri, val is also supported.
+# Used for best-result reporting and MSF checkpoint selection, never for the stage switch.
+# For Tri datasets with a validation split, val is also supported.
 selection_split: test
 encoder_checkpoint: null
 fusion_checkpoint: null
