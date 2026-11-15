@@ -60,4 +60,4 @@ For fusion training, `fusion_loss` implements SDM + MCA with a default MCA coeff
 
 ## Acknowledgements
 
-We thank the authors of [IRRA](https://github.com/anosorae/IRRA), [HAM](https://github.com/MPI-Lab/HAM), and [CLIP](https://github.com/openai/CLIP) for making their research and code available. SCOPE uses the HAM-pretrained backbone, builds on the CLIP architecture, and adopts the SDM objective introduced by IRRA. Notices for adapted code are included in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+We thank the authors of [IRRA](https://github.com/anosorae/IRRA), [HAM](https://github.com/MPI-Lab/HAM), and [CLIP](https://github.com/openai/CLIP) for making their research and code available. SCOPE uses the HAM-pretrained backbone, builds on the CLIP architecture, and adopts the SDM objective introduced by IRRA.
