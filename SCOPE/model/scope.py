@@ -1,4 +1,4 @@
-"""SCOPE model integration for an already-loaded HAM/CLIP ViT backbone."""
+"""SCOPE model integration for the HAM-pretrained ViT backbone."""
 import copy
 import math
 
@@ -73,9 +73,10 @@ class CLIPTextEncoder(nn.Module):
 class SCOPE(nn.Module):
     """Free-gate Dual-LoRA encoders with optional modality-specific fusion.
 
-    ``backbone`` is an already-loaded HAM/CLIP ViT module. Its visual positional
-    embeddings must match the intended image resolution. This module performs
-    no network access, file loading, tokenization, or image preprocessing.
+    ``backbone`` is an already-loaded HAM-pretrained ViT module. Its visual positional
+    embeddings must match the intended image resolution. Alternatively,
+    ``from_pretrained`` loads a local HAM checkpoint. Input tokenization and
+    image preprocessing are handled by the caller; there is no network access.
     """
 
     def __init__(self, backbone, rank_magnitude=8, rank_direction=8,
@@ -134,6 +135,16 @@ class SCOPE(nn.Module):
         self.vision_encoder.ln_post.requires_grad_(True)
         self.vision_encoder.proj.requires_grad_(True)
         self.float().to(device)
+
+    @classmethod
+    def from_pretrained(cls, ham_checkpoint, image_size=(384, 128),
+                        rank_magnitude=8, rank_direction=8, alpha=1.0,
+                        temperature=0.07):
+        """Build SCOPE directly from a local HAM ReID pretrained checkpoint."""
+        from .ham import load_ham_backbone
+        backbone = load_ham_backbone(ham_checkpoint, image_size=image_size)
+        return cls(backbone, rank_magnitude=rank_magnitude,
+                   rank_direction=rank_direction, alpha=alpha, temperature=temperature)
 
     @staticmethod
     def _load_backbone(target, source):

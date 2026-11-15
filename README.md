@@ -1,25 +1,43 @@
 # SCOPE
 
-Model components for **SCOPE: A Contribution-aware and Efficient Framework for Multimodal Person Retrieval**.
+Model implementation of **SCOPE: A Contribution-aware and Efficient Framework for Multimodal Person Retrieval**, using the **HAM-pretrained ViT-B/16** backbone.
 
-- `SCOPE/model/gd_lora.py`: free-gate Dual-LoRA for visual and text transformers.
-- `SCOPE/model/scope.py`: modality-specific visual tokenizers and shared backbone integration.
-- `SCOPE/model/msf.py`: modality- and cardinality-specific fusion heads.
-- `SCOPE/model/mca.py`: detached CE-gradient contribution targets and SDM + MCA objective.
-- `SCOPE/model/objectives.py`: similarity distribution matching.
+## HAM pretrained weights
 
-Requires Python 3.10+ and PyTorch 2.5+. Supply an already-loaded [HAM](https://github.com/MPI-Lab/HAM) / [CLIP](https://github.com/openai/CLIP) ViT backbone. Its positional embeddings must already match the input resolution. Images must be preprocessed and text must be supplied as CLIP token IDs; the model does not download or load external files.
+Download the **ReID pretrained model** linked in the [official HAM README](https://github.com/MPI-Lab/HAM/blob/main/readme.md) and place the checkpoint at `pretrained/ham.pth`, or pass its local location with `--ham-checkpoint`. The loader accepts the original HAM checkpoint and a backbone tensor state dictionary. Weights are not included in this repository.
+
+## Quick start
+
+Requires Python 3.10+ and PyTorch 2.5+.
+
+```bash
+python -m pip install -r requirements.txt
+bash run.sh --ham-checkpoint pretrained/ham.pth
+```
+
+The command loads HAM, builds SCOPE with rank 8 + 8, and runs a synthetic forward check for RGB, NIR, CP, SK, Text, and all 11 multimodal fusion subsets. It uses an available CUDA device or falls back to CPU. Successful execution prints `"status": "passed"` and feature shapes. This checks model execution; it does not train the model or report retrieval performance. MSF heads are newly initialized unless trained weights are supplied.
+
+```bash
+# Run on CPU explicitly.
+bash run.sh --ham-checkpoint pretrained/ham.pth --device cpu
+
+# Optionally check a matched pair of trained SCOPE encoder and MSF checkpoints.
+bash run.sh --ham-checkpoint pretrained/ham.pth \
+  --encoder-checkpoint checkpoints/encoder.pth \
+  --fusion-checkpoint checkpoints/msf.pth
+```
+
+## Use the model
 
 ```python
 from SCOPE import SCOPE
 from SCOPE.model import attach_msf, fusion_mode
 
-# backbone: an already-loaded HAM/CLIP-compatible ViT module.
-model = SCOPE(backbone, rank_magnitude=8, rank_direction=8)
+model = SCOPE.from_pretrained("pretrained/ham.pth")
+# Images are preprocessed tensors; text is supplied as token IDs.
 features = model({"rgb": rgb_images, "sk": sketch_images, "text": text_token_ids})
 
-# Call after adapting/loading the encoder. This freezes the encoder and
-# initializes the fusion heads; learned fusion requires trained head weights.
+# Initialize MSF after adapting/loading the encoder; this freezes the encoder.
 attach_msf(model, active_modalities=(2, 3))  # NIR=0, CP=1, SK=2, TEXT=3
 fusion_mode(model, training=False)
 fused, logits, weights = model.msf_fuse_by_indices(
@@ -27,8 +45,19 @@ fused, logits, weights = model.msf_fuse_by_indices(
 )
 ```
 
-The default encoder uses rank 8 + 8, AB-norm rank reweighting, learned positive gate strength, and output-channel RMS calibration. It has no additive direction residual. Backbone transformer weights remain frozen; low-rank modules, visual tokenizers, layer normalization, and projection parameters provide adaptation.
+Default image size is 384 × 128. The free gate uses AB-norm rank reweighting, learned positive strength, and output-channel RMS calibration, with no additive direction residual. MSF combines raw features before final cosine normalization.
 
-MSF combines raw features before final cosine normalization. For contribution alignment, `gallery_context` accepts detached RGB reference features and identity labels from training data. `gradient_contribution` estimates utility derivatives at uniform fusion weights. The caller supplies training-calibrated temperatures to `fusion_loss`; its default MCA coefficient is 1.5. During fusion-only optimization, encode inputs without gradients and use `fusion_mode(model, training=True)` to keep the encoder in evaluation mode.
+For fusion training, `fusion_loss` implements SDM + MCA with a default MCA coefficient of 1.5. Its detached contribution targets use uniform reference fusion and training RGB reference features. Supply training-calibrated temperatures, encode inputs without gradients, and call `fusion_mode(model, training=True)` to keep the encoder in evaluation mode.
 
-This repository contains model source only.
+## Model files
+
+- `SCOPE/model/ham.py`: local HAM weight loading and backbone construction.
+- `SCOPE/model/scope.py`: SCOPE encoders and backbone integration.
+- `SCOPE/model/gd_lora.py`: free-gate Dual-LoRA.
+- `SCOPE/model/msf.py`: modality-specific fusion heads.
+- `SCOPE/model/mca.py`: modality contribution alignment.
+- `SCOPE/model/objectives.py`: similarity distribution matching.
+
+## Acknowledgements
+
+We thank the authors of [IRRA](https://github.com/anosorae/IRRA), [HAM](https://github.com/MPI-Lab/HAM), and [CLIP](https://github.com/openai/CLIP) for making their research and code available. SCOPE uses the HAM-pretrained backbone, builds on the CLIP architecture, and adopts the SDM objective introduced by IRRA. Notices for adapted code are included in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
